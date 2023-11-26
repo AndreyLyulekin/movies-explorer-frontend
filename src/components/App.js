@@ -1,10 +1,14 @@
-import { Header, FirstScreen } from './index.js';
+import { Header, FirstScreen, About, Tech } from './index.js';
 
 export default function App() {
   return (
     <div className='App'>
       <Header />
-      <FirstScreen />
+      <main>
+        <FirstScreen />
+        <About />
+        <Tech />
+      </main>
     </div>
   );
 }
