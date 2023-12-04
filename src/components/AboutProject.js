@@ -1,4 +1,4 @@
-export default function About() {
+export default function AboutProject() {
   return (
     <section
       className='universal__section'

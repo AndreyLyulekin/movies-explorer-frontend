@@ -2,3 +2,6 @@
 @import url(./fonts/fonts.css);
 
 @import url(./styles/app.css);
+@import url(./components/Preloader/Preloader.css);
+@import url(./components/AboutMe/AboutMe.css);
+@import url(./components/Footer/Footer.css);

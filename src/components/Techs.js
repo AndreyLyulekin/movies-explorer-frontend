@@ -1,6 +1,6 @@
 import { technologies } from './index.js';
 
-export default function Tech() {
+export default function Techs() {
   return (
     <section
       className='universal__section tech'
