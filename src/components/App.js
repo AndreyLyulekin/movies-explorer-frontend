@@ -1,8 +1,10 @@
-import { Header, FirstScreen, AboutProject, Techs, Preloader, AboutMe, Footer } from './index.js';
 import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router';
+import { Header, Preloader, Main, Footer, Auth } from './index.js';
 
 export default function App() {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -14,14 +16,26 @@ export default function App() {
     <>
       {isPageLoaded ? (
         <div className='App'>
-          <Header />
-          <main>
-            <FirstScreen />
-            <AboutProject />
-            <Techs />
-            <AboutMe />
-            <Footer />
-          </main>
+          <Routes>
+            <Route
+              path='/'
+              element={
+                <>
+                  <Header />
+                  <Main />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path='/sign-up'
+              element={<Auth />}
+            />
+            <Route
+              path='/sign-in'
+              element={<Auth />}
+            />
+          </Routes>
         </div>
       ) : (
         <Preloader />

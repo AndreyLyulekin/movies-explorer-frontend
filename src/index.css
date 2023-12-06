@@ -5,3 +5,7 @@
 @import url(./components/Preloader/Preloader.css);
 @import url(./components/AboutMe/AboutMe.css);
 @import url(./components/Footer/Footer.css);
+
+@import url(./components/AuthForm/AuthForm.css);
+
+@import url(./components/Auth/Auth.css);
