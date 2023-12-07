@@ -1,0 +1,35 @@
+#root {
+  background-color: #202020;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.universal__section {
+  display: flex;
+  flex-direction: column;
+  max-width: calc(1280px - 70px * 2);
+  margin: 110px 70px;
+}
+
+.universal__section_header {
+  max-width: calc(1280px - 70px * 2);
+  color: #fff;
+  font-family: Inter;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  margin: 0;
+  user-select: none;
+}
+
+.universal__header_line {
+  width: 1140px;
+  height: 1px;
+  flex-shrink: 0;
+  border: none;
+  background-color: #fff;
+  margin: 23px 0 0;
+}

@@ -1,4 +1,4 @@
-import { technologies } from './index.js';
+import { technologies } from '../index.js';
 
 export default function Techs() {
   return (

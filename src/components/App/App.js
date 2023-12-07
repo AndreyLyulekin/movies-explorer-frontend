@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router';
-import { Header, Preloader, Main, Footer, Auth, NotFound } from './index.js';
+import { Header, Preloader, Main, Footer, Auth, NotFound } from '../index.js';
 
 export default function App() {
   const [isPageLoaded, setIsPageLoaded] = useState(false);

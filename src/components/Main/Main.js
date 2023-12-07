@@ -1,9 +1,9 @@
-import { FirstScreen, AboutProject, Techs, AboutMe } from '../index.js';
+import { Promo, AboutProject, Techs, AboutMe } from '../index.js';
 
 export default function Main() {
   return (
     <main>
-      <FirstScreen />
+      <Promo />
       <AboutProject />
       <Techs />
       <AboutMe />

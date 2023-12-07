@@ -1,9 +1,9 @@
 import Header from './Header/Header';
-import Logo from './Logo';
-import HeaderSignBtns from './Header/HeaderSignBtns';
-import FirstScreen from './FirstScreen';
-import AboutProject from './AboutProject';
-import Techs from './Techs';
+import Logo from './Logo/Logo.js';
+import HeaderSignBtns from './HeaderSignBtns/HeaderSignBtns';
+import Promo from './Promo/Promo.js';
+import AboutProject from './AboutProject/AboutProject.js';
+import Techs from './Techs/Techs.js';
 import { technologies } from '../utils/consts';
 import Preloader from './Preloader/Preloader';
 import AboutMe from './AboutMe/AboutMe';
@@ -18,7 +18,7 @@ export {
   Header,
   Logo,
   HeaderSignBtns,
-  FirstScreen,
+  Promo,
   AboutProject,
   Techs,
   technologies,
