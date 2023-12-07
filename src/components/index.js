@@ -12,6 +12,7 @@ import Footer from './Footer/Footer.js';
 import Main from './Main/Main.js';
 import Auth from './Auth/Auth.js';
 import AuthForm from './AuthForm/AuthForm.js';
+import NotFound from './NotFound/NotFound.js';
 
 export {
   Header,
@@ -28,4 +29,5 @@ export {
   Main,
   Auth,
   AuthForm,
+  NotFound,
 };
