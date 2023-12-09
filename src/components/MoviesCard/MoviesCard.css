@@ -53,3 +53,19 @@
   border: none;
   cursor: pointer;
 }
+.card__save::before {
+  content: 'Сохранить';
+}
+
+.card__save_done {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  content: '';
+  width: 21px;
+  height: 21px;
+  background-image: url('../../images/save3.svg');
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}

@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 export default function MoviesCard({ card }) {
-  function convertMinToHrsAndMin(minutes) {
+  const [isAdded, setIsAdded] = useState(false);
+
+  const convertMinToHrsAndMin = useCallback((minutes) => {
     const hours = Math.floor(minutes / 60);
     const remainingMinutes = minutes % 60;
 
     return `${hours}ч ${remainingMinutes}м`;
-  }
+  }, []);
 
   let duration = convertMinToHrsAndMin(card.duration);
+
+  const handleClick = () => {
+    const existingCards = JSON.parse(localStorage.getItem('cards')) || [];
+    existingCards.push(card);
+    localStorage.setItem('cards', JSON.stringify(existingCards));
+  };
+
+  useEffect(() => {
+    const existingCards = JSON.parse(localStorage.getItem('cards')) || [];
+    const currentCardId = card.id;
+    setIsAdded(existingCards.some((obj) => obj.id === currentCardId));
+  }, [card.id, isAdded]);
 
   return (
     <article className='card'>
@@ -21,7 +35,9 @@ export default function MoviesCard({ card }) {
         <h2 className='card__title'>{card.nameRU}</h2>
         <p className='card__description'>{duration}</p>
       </div>
-      <button className='card__save'>Сохранить</button>
+      <button
+        onClick={handleClick}
+        className={`${isAdded ? 'card__save_done' : 'card__save'}`}></button>
     </article>
   );
 }

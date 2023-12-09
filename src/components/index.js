@@ -21,6 +21,7 @@ import SearchForm from './SearchForm/SearchForm.js';
 import MoviesCardList from './MoviesCardList/MoviesCardList.js';
 import MoviesCard from './MoviesCard/MoviesCard.js';
 import Profile from './Profile/Profile.js';
+import SavedMovies from './SavedMovies/SavedMovies.js';
 
 export {
   Header,
@@ -46,4 +47,5 @@ export {
   MoviesCardList,
   MoviesCard,
   Profile,
+  SavedMovies,
 };
