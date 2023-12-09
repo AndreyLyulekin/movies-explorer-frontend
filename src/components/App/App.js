@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router';
-import { Header, Preloader, Main, Footer, Auth, NotFound } from '../index.js';
+import { Header, Preloader, Main, Footer, Auth, NotFound, Movies } from '../index.js';
 
 export default function App() {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -21,7 +21,7 @@ export default function App() {
               path='/'
               element={
                 <>
-                  <Header />
+                  <Header isLoggedIn={isLoggedIn} />
                   <Main />
                   <Footer />
                 </>
@@ -34,6 +34,16 @@ export default function App() {
             <Route
               path='/sign-in'
               element={<Auth />}
+            />
+            <Route
+              path='/movies'
+              element={
+                <>
+                  <Header isLoggedIn={isLoggedIn} />
+                  <Movies />
+                  <Footer />
+                </>
+              }
             />
             <Route
               path='*'

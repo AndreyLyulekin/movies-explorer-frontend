@@ -1,10 +1,10 @@
-import { Logo, HeaderSignBtns } from '../index.js';
+import { Logo, HeaderLoggedOut, HeaderLoggedIn } from '../index.js';
 
-export default function Header() {
+export default function Header({ isLoggedIn }) {
   return (
     <header className='header'>
       <Logo />
-      <HeaderSignBtns />
+      {isLoggedIn ? <HeaderLoggedIn /> : <HeaderLoggedOut />}
     </header>
   );
 }

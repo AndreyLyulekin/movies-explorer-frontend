@@ -1,6 +1,6 @@
-import Header from './Header/Header';
+import Header from './Header/Header.js';
 import Logo from './Logo/Logo.js';
-import HeaderSignBtns from './HeaderSignBtns/HeaderSignBtns';
+import HeaderLoggedOut from './HeaderLoggedOut/HeaderLoggedOut.js';
 import Promo from './Promo/Promo.js';
 import AboutProject from './AboutProject/AboutProject.js';
 import Techs from './Techs/Techs.js';
@@ -13,11 +13,15 @@ import Main from './Main/Main.js';
 import Auth from './Auth/Auth.js';
 import AuthForm from './AuthForm/AuthForm.js';
 import NotFound from './NotFound/NotFound.js';
+import HeaderLoggedIn from './HeaderLoggedIn/HeaderLoggedIn.js';
+import Movies from './Movies/Movies.js';
+import SearchBtn from '../images/Search-Btn.svg';
+import IosCheckBox from './IosCheckBox/IosCheckBox.js';
 
 export {
   Header,
   Logo,
-  HeaderSignBtns,
+  HeaderLoggedOut,
   Promo,
   AboutProject,
   Techs,
@@ -30,4 +34,8 @@ export {
   Auth,
   AuthForm,
   NotFound,
+  HeaderLoggedIn,
+  Movies,
+  SearchBtn,
+  IosCheckBox,
 };

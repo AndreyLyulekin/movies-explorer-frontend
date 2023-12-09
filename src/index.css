@@ -8,8 +8,11 @@
 @import url(./components/AuthForm/AuthForm.css);
 @import url(./components/Footer/Footer.css);
 @import url(./components/Header/Header.css);
-@import url(./components/HeaderSignBtns/HeaderSignBtns.css);
+@import url(./components/HeaderLoggedOut/HeaderLoggedOut.css);
+@import url(./components/HeaderLoggedIn/HeaderLoggedIn.css);
+@import url(./components/Movies/Movies.css);
 @import url(./components/NotFound/NotFound.css);
 @import url(./components/Preloader/Preloader.css);
 @import url(./components/Promo/Promo.css);
 @import url(./components/Techs/Techs.css);
+@import url(./components/IosCheckBox/IosCheckBox.css);
