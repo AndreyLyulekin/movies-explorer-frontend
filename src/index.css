@@ -7,12 +7,16 @@
 @import url(./components/Auth/Auth.css);
 @import url(./components/AuthForm/AuthForm.css);
 @import url(./components/Footer/Footer.css);
+@import url(./components/FilterCheckbox/FilterCheckbox.css);
 @import url(./components/Header/Header.css);
 @import url(./components/HeaderLoggedOut/HeaderLoggedOut.css);
 @import url(./components/HeaderLoggedIn/HeaderLoggedIn.css);
 @import url(./components/Movies/Movies.css);
+@import url(./components/MoviesCard/MoviesCard.css);
+@import url(./components/MoviesCardList/MoviesCardList.css);
 @import url(./components/NotFound/NotFound.css);
 @import url(./components/Preloader/Preloader.css);
 @import url(./components/Promo/Promo.css);
+@import url(./components/Profile/Profile.css);
+@import url(./components/SearchForm/SearchForm.css);
 @import url(./components/Techs/Techs.css);
-@import url(./components/IosCheckBox/IosCheckBox.css);

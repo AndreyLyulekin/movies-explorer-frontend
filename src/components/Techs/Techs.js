@@ -14,8 +14,14 @@ export default function Techs() {
         </span>
       </article>
       <ul className='tech__lists'>
-        {technologies.map((i) => {
-          return <li className='tech__list'>{i}</li>;
+        {technologies.map((i, index) => {
+          return (
+            <li
+              className='tech__list'
+              key={index}>
+              {i}
+            </li>
+          );
         })}
       </ul>
     </section>

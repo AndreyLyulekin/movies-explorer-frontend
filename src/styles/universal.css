@@ -33,3 +33,12 @@
   background-color: #fff;
   margin: 23px 0 0;
 }
+
+.universal__line_light {
+  width: 1140px;
+  height: 1px;
+  flex-shrink: 0;
+  border: none;
+  background-color: #424242;
+  margin: 19px 0 20px;
+}

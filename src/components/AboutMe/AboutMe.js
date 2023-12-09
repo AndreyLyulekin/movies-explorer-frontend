@@ -1,3 +1,4 @@
+import React, { Fragment } from 'react';
 import { mePhoto } from '../index';
 
 export default function AboutMe() {
@@ -44,17 +45,17 @@ export default function AboutMe() {
       </div>
       <div className='aboutMe__portfolio'>
         <h4 className='aboutMe__portfolio_title'>Портфолио</h4>
-        {sitesPortfolio.map((iiem, index) => {
+        {sitesPortfolio.map((item, index) => {
           return (
-            <>
+            <React.Fragment key={index}>
               <a
                 className='aboutMe__portfolio_link'
-                href={iiem.link}>
-                <span className='aboutMe__portfolio_text'>{iiem.text}</span>
+                href={item.link}>
+                <span className='aboutMe__portfolio_text'>{item.text}</span>
                 <span className='aboutMe__portfolio_arrow'>↗</span>
               </a>
-              {index < sitesPortfolio.length - 1 ? <hr className='aboutMe__portfolio_line' /> : ''}
-            </>
+              {index < sitesPortfolio.length - 1 ? <hr className='universal__line_light' /> : ''}
+            </React.Fragment>
           );
         })}
       </div>

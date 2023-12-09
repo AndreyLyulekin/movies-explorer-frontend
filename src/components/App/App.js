@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router';
-import { Header, Preloader, Main, Footer, Auth, NotFound, Movies } from '../index.js';
+import { Header, Preloader, Main, Footer, Auth, NotFound, Movies, Profile } from '../index.js';
 
 export default function App() {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [user, setUser] = useState({
+    name: 'Виталий',
+    email: 'pochta@yandex.ru',
+  });
 
   useEffect(() => {
     setTimeout(() => {
@@ -16,16 +20,11 @@ export default function App() {
     <>
       {isPageLoaded ? (
         <div className='App'>
+          <Header isLoggedIn={isLoggedIn} />
           <Routes>
             <Route
               path='/'
-              element={
-                <>
-                  <Header isLoggedIn={isLoggedIn} />
-                  <Main />
-                  <Footer />
-                </>
-              }
+              element={<Main />}
             />
             <Route
               path='/sign-up'
@@ -37,12 +36,15 @@ export default function App() {
             />
             <Route
               path='/movies'
+              element={<Movies />}
+            />
+            <Route
+              path='/profile'
               element={
-                <>
-                  <Header isLoggedIn={isLoggedIn} />
-                  <Movies />
-                  <Footer />
-                </>
+                <Profile
+                  user={user}
+                  setIsLoggedIn={setIsLoggedIn}
+                />
               }
             />
             <Route
@@ -50,6 +52,8 @@ export default function App() {
               element={<NotFound />}
             />
           </Routes>
+
+          <Footer />
         </div>
       ) : (
         <Preloader />

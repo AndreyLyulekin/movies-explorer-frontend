@@ -1,61 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import { SearchBtn, IosCheckBox } from '../index';
+import { SearchForm, MoviesCardList, Preloader } from '../index';
 
 export default function Movies() {
   const [formData, setFormData] = useState({
     query: '',
     isShort: false,
   });
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const updatedValue = type === 'checkbox' ? checked : value;
-
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: updatedValue,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-  };
+  useEffect(() => {
+    (async function () {
+      try {
+        setIsLoading(true);
+        for (let i = 1; i <= 9; i++) {
+          const response = await fetch(`https://api.nomoreparties.co/beatfilm-movies/${i}`);
+          const jsonData = await response.json();
+          setMovies((prev) => prev.concat(jsonData));
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, []);
 
   return (
     <>
-      <section className='universal__section search'>
-        <form
-          onSubmit={handleSubmit}
-          className='searchForm'>
-          <input
-            className='search__input'
-            type='search'
-            id='searchInput'
-            placeholder='Фильм'
-            name='query'
-            onChange={handleInputChange}
-          />
-          <button
-            className='search__submit'
-            type='submit'>
-            <img
-              src={SearchBtn}
-              alt='search'
-            />
-          </button>
-        </form>
-        <span className='search__label_description'>
-          <IosCheckBox
-            handleInputChange={handleInputChange}
-            name={'isShort'}
-          />
-          Короткометражки
-        </span>
-        <hr className='universal__header_line' />
-      </section>
-      <section>Movies</section>
+      <SearchForm setFormData={setFormData} />
+      {isLoading ? <Preloader /> : <MoviesCardList movies={movies} />}
     </>
   );
 }

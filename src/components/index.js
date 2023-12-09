@@ -16,7 +16,11 @@ import NotFound from './NotFound/NotFound.js';
 import HeaderLoggedIn from './HeaderLoggedIn/HeaderLoggedIn.js';
 import Movies from './Movies/Movies.js';
 import SearchBtn from '../images/Search-Btn.svg';
-import IosCheckBox from './IosCheckBox/IosCheckBox.js';
+import FilterCheckbox from './FilterCheckbox/FilterCheckbox.js';
+import SearchForm from './SearchForm/SearchForm.js';
+import MoviesCardList from './MoviesCardList/MoviesCardList.js';
+import MoviesCard from './MoviesCard/MoviesCard.js';
+import Profile from './Profile/Profile.js';
 
 export {
   Header,
@@ -37,5 +41,9 @@ export {
   HeaderLoggedIn,
   Movies,
   SearchBtn,
-  IosCheckBox,
+  FilterCheckbox,
+  SearchForm,
+  MoviesCardList,
+  MoviesCard,
+  Profile,
 };

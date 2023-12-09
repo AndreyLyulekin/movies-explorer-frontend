@@ -1,0 +1,9 @@
+.movies {
+  max-width: calc(1280px - 70px * 2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 70px;
+  row-gap: 60px;
+  column-gap: 30px;
+}

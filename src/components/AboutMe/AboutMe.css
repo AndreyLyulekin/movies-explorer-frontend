@@ -84,12 +84,3 @@
   letter-spacing: -1.2px;
   line-height: 50px;
 }
-
-.aboutMe__portfolio_line {
-  width: 1140px;
-  height: 1px;
-  flex-shrink: 0;
-  border: none;
-  background-color: #424242;
-  margin: 19px 0 20px;
-}
