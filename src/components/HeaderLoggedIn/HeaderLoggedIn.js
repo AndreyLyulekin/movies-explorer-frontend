@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
 
-export default function HeaderLoggedIn() {
+import { burger } from '../index.js';
+
+export default function HeaderLoggedIn({ setIsContextMenuOpened }) {
+  const burgerClick = () => {
+    setIsContextMenuOpened((prev) => !prev);
+  };
+
   return (
     <>
       <nav className='header__nav'>
@@ -18,6 +24,14 @@ export default function HeaderLoggedIn() {
       <Link to='/profile'>
         <button className='header__profile'>Аккаунт</button>
       </Link>
+      <button
+        className='header__burger'
+        onClick={burgerClick}>
+        <img
+          src={burger}
+          alt='Logo'
+        />
+      </button>
     </>
   );
 }

@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom';
-import { memo } from 'react';
 
-import { Logo, HeaderLoggedOut, HeaderLoggedIn } from '../index.js';
+import { logo, HeaderLoggedOut, HeaderLoggedIn } from '../index.js';
 
-const Header = ({ isLoggedIn }) => {
+export default function Header({ isLoggedIn, setIsContextMenuOpened }) {
   return (
     <header className='header'>
       <Link to='/'>
-        <Logo />
+        <img
+          src={logo}
+          alt='Logo'
+        />
       </Link>
-      {isLoggedIn ? <HeaderLoggedIn /> : <HeaderLoggedOut />}
+      {isLoggedIn ? <HeaderLoggedIn setIsContextMenuOpened={setIsContextMenuOpened} /> : <HeaderLoggedOut />}
     </header>
   );
-};
-
-export default memo(Header);
+}

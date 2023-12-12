@@ -2,7 +2,7 @@ import { Promo, AboutProject, Techs, AboutMe } from '../index.js';
 
 export default function Main() {
   return (
-    <main>
+    <main className='main'>
       <Promo />
       <AboutProject />
       <Techs />

@@ -1,7 +1,10 @@
-import { MoviesCard } from '../index';
 import { memo } from 'react';
+import { useLocation } from 'react-router-dom';
+
+import { MoviesCard } from '../index';
 
 function MoviesCardList({ movies }) {
+  const location = useLocation();
   return (
     <section className='movies'>
       {movies.map((i) => {
@@ -12,6 +15,7 @@ function MoviesCardList({ movies }) {
           />
         );
       })}
+      {location.pathname === '/movies' ? <button className='movies__more'>Ещё</button> : ''}
     </section>
   );
 }

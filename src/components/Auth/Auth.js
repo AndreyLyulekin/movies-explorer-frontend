@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { Logo, AuthForm } from '../index.js';
+import { logo, AuthForm } from '../index.js';
 
 export default function Auth() {
   const location = useLocation();
@@ -34,7 +34,10 @@ export default function Auth() {
   return (
     <section className='auth'>
       <Link to='/'>
-        <Logo />
+        <img
+          src={logo}
+          alt='Logo'
+        />
       </Link>
       <h1 className='auth__title'>{title}</h1>
       <AuthForm location={location.pathname} />

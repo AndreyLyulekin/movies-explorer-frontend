@@ -5,8 +5,10 @@ export default function Techs() {
     <section
       className='universal__section tech'
       id={'tech'}>
-      <h2 className='universal__section_header'>Технологии</h2>
-      <hr className='universal__header_line' />
+      <div>
+        <h2 className='universal__section_header'>Технологии</h2>
+        <hr className='universal__header_line' />
+      </div>
       <article className='tech__article'>
         <h3 className='tech__article_title'>7 технологий</h3>
         <span className='tech__article_description'>

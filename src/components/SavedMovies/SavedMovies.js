@@ -10,7 +10,6 @@ export default function SavedMovies() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    console.log(JSON.parse(localStorage.getItem('cards')).length);
     setMovies(JSON.parse(localStorage.getItem('cards')) || []);
   }, []);
 

@@ -1,12 +1,24 @@
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router';
-import { Header, Preloader, Main, Footer, Auth, NotFound, Movies, Profile, SavedMovies } from '../index.js';
+import {
+  Header,
+  Preloader,
+  Main,
+  Footer,
+  Auth,
+  NotFound,
+  Movies,
+  Profile,
+  SavedMovies,
+  ContextMenu,
+} from '../index.js';
 
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [isMoviesLoading, setIsMoviesLoading] = useState(false);
   const [isPageLoaded, setIsPageLoaded] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isContextMenuOpened, setIsContextMenuOpened] = useState(false);
   const [user, setUser] = useState({
     name: 'Виталий',
     email: 'pochta@yandex.ru',
@@ -18,7 +30,7 @@ export default function App() {
     }, 1000);
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     (async function () {
       try {
         setIsMoviesLoading(true);
@@ -39,11 +51,23 @@ export default function App() {
     <>
       {isPageLoaded ? (
         <div className='App'>
-          <Header isLoggedIn={isLoggedIn} />
+          <ContextMenu
+            isContextMenuOpened={isContextMenuOpened}
+            setIsContextMenuOpened={setIsContextMenuOpened}
+          />
           <Routes>
             <Route
               path='/'
-              element={<Main />}
+              element={
+                <>
+                  <Header
+                    isLoggedIn={isLoggedIn}
+                    setIsContextMenuOpened={setIsContextMenuOpened}
+                  />
+                  <Main />
+                  <Footer />
+                </>
+              }
             />
             <Route
               path='/sign-up'
@@ -56,23 +80,45 @@ export default function App() {
             <Route
               path='/movies'
               element={
-                <Movies
-                  movies={movies}
-                  isMoviesLoading={isMoviesLoading}
-                />
+                <>
+                  <Header
+                    isLoggedIn={isLoggedIn}
+                    setIsContextMenuOpened={setIsContextMenuOpened}
+                  />
+                  <Movies
+                    movies={movies}
+                    isMoviesLoading={isMoviesLoading}
+                  />
+                  <Footer />
+                </>
               }
             />
             <Route
               path='/saved-movies'
-              element={<SavedMovies />}
+              element={
+                <>
+                  <Header
+                    isLoggedIn={isLoggedIn}
+                    setIsContextMenuOpened={setIsContextMenuOpened}
+                  />
+                  <SavedMovies />
+                  <Footer />
+                </>
+              }
             />
             <Route
               path='/profile'
               element={
-                <Profile
-                  user={user}
-                  setIsLoggedIn={setIsLoggedIn}
-                />
+                <>
+                  <Header
+                    isLoggedIn={isLoggedIn}
+                    setIsContextMenuOpened={setIsContextMenuOpened}
+                  />
+                  <Profile
+                    user={user}
+                    setIsLoggedIn={setIsLoggedIn}
+                  />
+                </>
               }
             />
             <Route
@@ -80,10 +126,9 @@ export default function App() {
               element={<NotFound />}
             />
           </Routes>
-          <Footer />
         </div>
       ) : (
-        <Preloader />
+        <Preloader first={true} />
       )}
     </>
   );

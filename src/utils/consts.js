@@ -1,4 +1,4 @@
-export const technologies = ['HTML', 'CSS', 'Js', 'React', 'Git', 'Express.js', 'mongoDB'];
+export const technologies = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB'];
 
 export const devUser = {
   name: 'Andrey',

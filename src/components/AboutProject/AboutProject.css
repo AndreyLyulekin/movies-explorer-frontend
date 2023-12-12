@@ -1,3 +1,7 @@
+.aboutProject {
+  margin: 90px 50px 110px;
+}
+
 .about__container {
   display: flex;
   gap: 40px;
@@ -83,4 +87,39 @@
   font-weight: 500;
   line-height: 17px;
   margin-top: 14px;
+}
+@media screen and (max-width: 768px) {
+  .aboutProject {
+    max-width: calc(768px - 50px * 2);
+    margin: 70px 50px 90px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about__container {
+    gap: 30px;
+    margin-top: 50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about__article {
+    width: 319px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .about__aside {
+    margin-top: 88px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .about__article_description {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .about__article_title {
+    margin: 0 0 22px 0;
+  }
 }

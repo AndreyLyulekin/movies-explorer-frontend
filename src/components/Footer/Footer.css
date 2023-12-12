@@ -1,6 +1,20 @@
 .footer {
   padding-top: 90px;
 }
+@media screen and (max-width: 768px) {
+  .footer {
+    max-width: calc(768px - 30px * 2);
+    padding-top: 79px;
+    margin: 0 0 20px 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer__line {
+    width: 708px;
+  }
+}
+
 .footer__description {
   color: #8b8b8b;
   text-align: center;
@@ -11,6 +25,7 @@
   font-weight: 400;
   line-height: normal;
 }
+
 .footer__link {
   color: #fff;
   text-align: right;
@@ -22,14 +37,17 @@
   line-height: normal;
   text-decoration: none;
 }
+
 .footer__underline-container {
   display: flex;
   justify-content: space-between;
 }
+
 .footer__container-links {
   display: flex;
   gap: 20px;
 }
+
 .footer__year {
   color: #fff;
   font-feature-settings: 'clig' off, 'liga' off;

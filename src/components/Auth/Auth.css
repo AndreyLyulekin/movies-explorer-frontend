@@ -2,6 +2,11 @@
   max-width: 400px;
   padding-top: 70px;
 }
+@media screen and (max-width: 768px) {
+  .auth {
+    padding-top: 230px;
+  }
+}
 
 .auth__title {
   color: #fff;
@@ -11,6 +16,11 @@
   font-weight: 500;
   line-height: normal;
   margin: 40px 0;
+}
+@media screen and (max-width: 768px) {
+  .auth__title {
+    margin: 40px 0 20px 0;
+  }
 }
 
 .auth__link_description {
@@ -22,6 +32,11 @@
   font-weight: 400;
   line-height: normal;
   margin-bottom: 70px;
+}
+@media screen and (max-width: 768px) {
+  .auth__link_description {
+    margin: 0;
+  }
 }
 
 .auth__link {

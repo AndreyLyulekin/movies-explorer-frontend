@@ -27,6 +27,11 @@
   line-height: normal;
   margin: 20px 0 10px;
 }
+@media screen and (max-width: 768px) {
+  .auth__label {
+    margin: 20px 0 10px;
+  }
+}
 
 .auth__btn {
   width: 396px;
@@ -42,4 +47,10 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  .auth__btn {
+    margin: 90px 0 15px;
+  }
 }

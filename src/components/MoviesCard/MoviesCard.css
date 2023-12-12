@@ -2,13 +2,26 @@
   width: 360px;
   position: relative;
   cursor: pointer;
+  z-index: 1;
 }
+@media screen and (max-width: 768px) {
+  .card {
+    width: 339px;
+  }
+}
+
 .card__image {
-  width: 360px;
+  width: 339px;
   height: 200px;
   object-fit: cover;
   border-radius: 3px;
 }
+@media screen and (max-width: 768px) {
+  .card__image {
+    width: 339px;
+  }
+}
+
 .card__title {
   max-width: 250px;
   overflow: hidden;
@@ -33,7 +46,7 @@
 }
 .card__description-container {
   display: flex;
-  width: 360px;
+  width: 100%;
   justify-content: space-between;
 }
 .card__save {

@@ -7,3 +7,33 @@
   row-gap: 60px;
   column-gap: 30px;
 }
+@media screen and (max-width: 768px) {
+  .movies {
+    padding: 0 30px;
+    row-gap: 37px;
+    margin-top: 70px;
+  }
+}
+
+.movies__more {
+  margin: 50px auto 0;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border-radius: 6px;
+  border: 1px solid #424242;
+  width: 320px;
+  height: 36px;
+  background: #202020;
+  cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  .movies__more {
+    margin-top: 13px;
+    margin-bottom: 80px;
+  }
+}

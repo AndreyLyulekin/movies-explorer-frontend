@@ -86,3 +86,9 @@
   background: #ff6838;
   animation: preloader-inside-red 1s ease-in-out infinite;
 }
+
+.preloader__first {
+  background-color: black;
+  height: 100vh;
+  padding: 0;
+}

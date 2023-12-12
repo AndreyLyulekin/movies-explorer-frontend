@@ -16,6 +16,7 @@ export default function MoviesCard({ card }) {
     const existingCards = JSON.parse(localStorage.getItem('cards')) || [];
     existingCards.push(card);
     localStorage.setItem('cards', JSON.stringify(existingCards));
+    setIsAdded((prev) => !prev);
   };
 
   useEffect(() => {

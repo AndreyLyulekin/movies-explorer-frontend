@@ -43,7 +43,7 @@ export default function SearchForm({ setFormData }) {
         />
         Короткометражки
       </span>
-      <hr className='universal__line_light' />
+      <hr className='universal__line_light search__line' />
     </section>
   );
 }

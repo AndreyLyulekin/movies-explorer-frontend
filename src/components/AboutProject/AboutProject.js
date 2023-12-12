@@ -1,7 +1,7 @@
 export default function AboutProject() {
   return (
     <section
-      className='universal__section'
+      className='universal__section aboutProject'
       id={'about'}>
       <h2 className='universal__section_header'>О проекте</h2>
       <hr className='universal__header_line' />

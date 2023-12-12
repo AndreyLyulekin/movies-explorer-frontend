@@ -1,5 +1,4 @@
 import Header from './Header/Header.js';
-import Logo from './Logo/Logo.js';
 import HeaderLoggedOut from './HeaderLoggedOut/HeaderLoggedOut.js';
 import Promo from './Promo/Promo.js';
 import AboutProject from './AboutProject/AboutProject.js';
@@ -22,10 +21,13 @@ import MoviesCardList from './MoviesCardList/MoviesCardList.js';
 import MoviesCard from './MoviesCard/MoviesCard.js';
 import Profile from './Profile/Profile.js';
 import SavedMovies from './SavedMovies/SavedMovies.js';
+import logo from '../images/logo.svg';
+import burger from '../images/burgerNotOpened.svg';
+import close from '../images/Group.svg';
+import ContextMenu from './ContextMenu/ContextMenu.js';
 
 export {
   Header,
-  Logo,
   HeaderLoggedOut,
   Promo,
   AboutProject,
@@ -48,4 +50,8 @@ export {
   MoviesCard,
   Profile,
   SavedMovies,
+  logo,
+  burger,
+  close,
+  ContextMenu,
 };
