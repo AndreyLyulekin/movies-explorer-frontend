@@ -7,7 +7,7 @@ export default function Techs() {
       id={'tech'}>
       <div>
         <h2 className='universal__section_header'>Технологии</h2>
-        <hr className='universal__header_line' />
+        <hr className='universal__header_line tech__line' />
       </div>
       <article className='tech__article'>
         <h3 className='tech__article_title'>7 технологий</h3>

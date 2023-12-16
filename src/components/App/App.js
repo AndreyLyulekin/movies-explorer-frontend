@@ -17,7 +17,7 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [isMoviesLoading, setIsMoviesLoading] = useState(false);
   const [isPageLoaded, setIsPageLoaded] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isContextMenuOpened, setIsContextMenuOpened] = useState(false);
   const [user, setUser] = useState({
     name: 'Виталий',

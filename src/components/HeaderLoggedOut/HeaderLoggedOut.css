@@ -29,3 +29,17 @@
   text-decoration: none;
   user-select: none;
 }
+
+@media screen and (max-width: 320px) {
+  .header__nav {
+    gap: 14px;
+  }
+  .header__link_registration {
+    font-size: 10px;
+  }
+  .header__link_login {
+    width: 54px;
+    padding: 5px 0;
+    font-size: 10px;
+  }
+}

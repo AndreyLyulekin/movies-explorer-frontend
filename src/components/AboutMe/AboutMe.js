@@ -21,7 +21,7 @@ export default function AboutMe() {
       className='universal__section aboutMe'
       id={'student'}>
       <h2 className='universal__section_header'>Студент</h2>
-      <hr className='universal__header_line' />
+      <hr className='universal__header_line aboutMe__line' />
       <div className='aboutMe__container'>
         <div>
           <h3 className='aboutMe__title'>Андрей</h3>

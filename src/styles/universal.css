@@ -26,12 +26,6 @@
   background-color: #fff;
   margin: 23px 0 0;
 }
-@media screen and (max-width: 768px) {
-  .universal__header_line {
-    width: 668px;
-    margin: 23px 0;
-  }
-}
 
 .universal__line_light {
   width: 1140px;
@@ -41,8 +35,27 @@
   background-color: #424242;
   margin: 19px 0 20px;
 }
+
 @media screen and (max-width: 768px) {
+  .universal__header_line {
+    width: 668px;
+    margin: 23px 0;
+  }
   .universal__line_light {
     width: 668px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .universal__line_light {
+    max-width: calc(320px - 14px * 2);
+  }
+  .universal__header_line {
+    width: 284px;
+    margin: 28px 0;
+  }
+  .universal__section_header {
+    font-size: 18px;
+    letter-spacing: -0.72px;
   }
 }
