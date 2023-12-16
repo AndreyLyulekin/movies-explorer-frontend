@@ -3,6 +3,7 @@
   margin: 0;
   padding: 100px 70px;
   align-items: center;
+  width: 100%;
   max-width: calc(100vw - 70px * 2);
 }
 
@@ -64,9 +65,17 @@
   letter-spacing: -0.56px;
 }
 
+.tech__header {
+  align-self: baseline;
+}
+
+.tech__line {
+  width: 100%;
+}
+
 @media screen and (max-width: 768px) {
   .tech {
-    max-width: calc(768px - 50px * 2);
+    max-width: calc(100vw - 50px * 2);
     padding: 90px 50px;
   }
   .tech__article_title {
@@ -89,7 +98,7 @@
 
 @media screen and (max-width: 320px) {
   .tech {
-    max-width: calc(320px - 18px * 2);
+    max-width: calc(100vw - 18px * 2);
     padding: 70px 18px;
     background: #202020;
   }

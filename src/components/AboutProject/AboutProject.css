@@ -1,5 +1,6 @@
 .aboutProject {
   margin: 90px 50px 110px;
+  max-width: 100%;
 }
 
 .about__container {

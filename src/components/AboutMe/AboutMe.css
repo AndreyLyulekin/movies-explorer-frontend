@@ -1,7 +1,12 @@
+.aboutMe {
+  width: 100%;
+}
+
 .aboutMe__container {
   margin-top: 66px;
   display: flex;
-  column-gap: 270px;
+  justify-content: space-between;
+  max-width: 100%;
 }
 
 .aboutMe__title {
@@ -119,7 +124,7 @@
   .aboutMe__paragraph {
     font-size: 12px;
     line-height: 18px;
-    width: 363px;
+    max-width: 363px;
   }
 
   .aboutMe__subtitle {
@@ -147,7 +152,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 520px) {
   .aboutMe {
     max-width: calc(320px - 14px * 2);
     margin: 70px 14px;
