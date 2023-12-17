@@ -15,7 +15,7 @@ export default function SearchForm({ setFormData }) {
     e.preventDefault();
   };
   return (
-    <section className='universal__section search'>
+    <section className='search'>
       <form
         onSubmit={handleSubmit}
         className='searchForm'>
@@ -28,7 +28,7 @@ export default function SearchForm({ setFormData }) {
           onChange={handleInputChange}
         />
         <button
-          className='search__submit'
+          className='search__submit util__button'
           type='submit'>
           <img
             src={SearchBtn}
@@ -43,7 +43,7 @@ export default function SearchForm({ setFormData }) {
         />
         Короткометражки
       </span>
-      <hr className='universal__line_light search__line' />
+      <hr className='search__line' />
     </section>
   );
 }

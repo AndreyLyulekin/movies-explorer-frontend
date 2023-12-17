@@ -59,7 +59,7 @@ export default function AuthForm({ location }) {
 
       <button
         type='submit'
-        className='auth__btn'>
+        className={`auth__btn util__button ${location === '/sign-in' ? 'auth__btn_login' : 'auth__btn_register'}`}>
         {location === '/sign-in' ? 'Войти' : 'Зарегистрироваться'}
       </button>
     </form>

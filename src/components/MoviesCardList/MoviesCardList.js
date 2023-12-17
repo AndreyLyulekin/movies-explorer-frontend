@@ -15,7 +15,9 @@ function MoviesCardList({ movies }) {
           />
         );
       })}
-      {location.pathname === '/movies' ? <button className='movies__more'>Ещё</button> : ''}
+      <div className='moveis__more_container'>
+        {location.pathname === '/movies' ? <button className='movies__more util__button'>Ещё</button> : ''}
+      </div>
     </section>
   );
 }

@@ -1,5 +1,7 @@
 .aboutMe {
+  max-width: calc(1280px - 70px * 2);
   width: 100%;
+  padding: 110px 70px 125px;
 }
 
 .aboutMe__container {
@@ -22,7 +24,6 @@
 
 .aboutMe__subtitle {
   color: #fff;
-  font-feature-settings: 'clig' off, 'liga' off;
   font-family: Inter;
   font-size: 18px;
   font-style: normal;
@@ -75,6 +76,7 @@
   display: flex;
   text-decoration: none;
   justify-content: space-between;
+  margin-bottom: 19px;
 }
 
 .aboutMe__portfolio_text {
@@ -97,10 +99,33 @@
   letter-spacing: -1.2px;
   line-height: 50px;
 }
-@media screen and (max-width: 768px) {
+.aboutMe__header {
+  color: #fff;
+  font-family: Inter;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  margin: 0 0 23px;
+}
+.aboutMe__header-line {
+  background: #dadada;
+  border: none;
+  height: 1px;
+  margin: 0;
+}
+.aboutMe__line {
+  background: #424242;
+  border: none;
+  height: 1px;
+  margin: 0 0 20px 0;
+}
+
+@media screen and (max-width: 1279px) {
   .aboutMe {
     max-width: calc(768px - 50px * 2);
-    margin: 90px 50px;
+    padding: 90px 50px;
   }
 
   .aboutMe__portfolio_text {
@@ -141,7 +166,7 @@
   }
 
   .aboutMe__container {
-    margin-top: 45px;
+    margin-top: 66px;
     column-gap: 49px;
   }
 
@@ -152,18 +177,27 @@
   }
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 767px) {
   .aboutMe {
     max-width: calc(320px - 14px * 2);
-    margin: 70px 14px;
+    padding: 70px 14px;
   }
+
   .aboutMe__line {
     width: 292px;
   }
 
+  .aboutMe__header {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.72px;
+    margin-bottom: 29px;
+  }
   .aboutMe__container {
     flex-direction: column-reverse;
-    margin-top: 32px;
+    margin-top: 60px;
     column-gap: 49px;
   }
 

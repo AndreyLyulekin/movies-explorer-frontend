@@ -18,10 +18,10 @@ export default function AboutMe() {
   ];
   return (
     <section
-      className='universal__section aboutMe'
+      className='aboutMe'
       id={'student'}>
-      <h2 className='universal__section_header'>Студент</h2>
-      <hr className='universal__header_line aboutMe__line' />
+      <h2 className='aboutMe__header'>Студент</h2>
+      <hr className='aboutMe__header-line' />
       <div className='aboutMe__container'>
         <div>
           <h3 className='aboutMe__title'>Андрей</h3>
@@ -33,7 +33,7 @@ export default function AboutMe() {
           </p>
           <a
             href='https://github.com/AndreyLyulekin'
-            className='aboutMe__link_github'>
+            className='aboutMe__link_github util__link'>
             Github
           </a>
         </div>
@@ -49,12 +49,12 @@ export default function AboutMe() {
           return (
             <React.Fragment key={index}>
               <a
-                className='aboutMe__portfolio_link'
+                className='aboutMe__portfolio_link util__link'
                 href={item.link}>
                 <span className='aboutMe__portfolio_text'>{item.text}</span>
                 <span className='aboutMe__portfolio_arrow'>↗</span>
               </a>
-              {index < sitesPortfolio.length - 1 ? <hr className='universal__line_light' /> : ''}
+              {index < sitesPortfolio.length - 1 ? <hr className='aboutMe__line' /> : ''}
             </React.Fragment>
           );
         })}

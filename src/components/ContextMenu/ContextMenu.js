@@ -24,19 +24,21 @@ export default function ContextMenu({ isContextMenuOpened, setIsContextMenuOpene
         <nav className='contextMenu__nav'>
           <Link
             onClick={handleCloseButtonClick}
-            className={`contextMenu__link ${location.pathname === '/' ? 'contextMenu__current' : ''}`}
+            className={`contextMenu__link util__link ${location.pathname === '/' ? 'contextMenu__current' : ''}`}
             to='/'>
             Главная
           </Link>
           <Link
             onClick={handleCloseButtonClick}
-            className={`contextMenu__link ${location.pathname === '/movies' ? 'contextMenu__current' : ''}`}
+            className={`contextMenu__link util__link ${location.pathname === '/movies' ? 'contextMenu__current' : ''}`}
             to='/movies'>
             Фильмы
           </Link>
           <Link
             onClick={handleCloseButtonClick}
-            className={`contextMenu__link ${location.pathname === '/saved-movies' ? 'contextMenu__current' : ''}`}
+            className={`contextMenu__link util__link ${
+              location.pathname === '/saved-movies' ? 'contextMenu__current' : ''
+            }`}
             to='/saved-movies'>
             Сохранённые фильмы
           </Link>
@@ -44,10 +46,10 @@ export default function ContextMenu({ isContextMenuOpened, setIsContextMenuOpene
         <Link
           to='/profile'
           onClick={handleCloseButtonClick}>
-          <button className='contextMenu__profile'>Аккаунт</button>
+          <button className='contextMenu__profile util__link'>Аккаунт</button>
         </Link>
         <button
-          className='contextMenu__close'
+          className='contextMenu__close util__button'
           onClick={handleCloseButtonClick}>
           <img
             src={close}

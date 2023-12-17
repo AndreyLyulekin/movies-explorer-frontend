@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  position: relative;
+  height: calc(100vh);
 }
 .notFound__title {
   color: #fff;
@@ -35,4 +37,12 @@
   border: none;
   background: transparent;
   cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .notFound__goBack {
+    position: absolute;
+    bottom: 30px;
+    margin: 0;
+  }
 }

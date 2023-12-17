@@ -2,13 +2,8 @@
   display: flex;
   flex-direction: column;
   max-width: 410px;
-  margin: auto;
+  margin: 0 auto;
   margin-bottom: 70px;
-}
-@media screen and (max-width: 768px) {
-  .profile {
-    margin-bottom: 95px;
-  }
 }
 .profile__title {
   color: #fff;
@@ -20,11 +15,6 @@
   line-height: normal;
   margin-top: 75px;
   margin-bottom: 120px;
-}
-@media screen and (max-width: 768px) {
-  .profile__title {
-    margin-bottom: 95px;
-  }
 }
 
 .profile__container {
@@ -60,11 +50,6 @@
   font-weight: 400;
   margin-top: 220px;
 }
-@media screen and (max-width: 768px) {
-  .profile__edit {
-    margin-top: 210px;
-  }
-}
 
 .profile__logout {
   color: #ee3465;
@@ -78,4 +63,50 @@
   background-color: #424242;
   border: none;
   margin: 17px 0;
+}
+
+@media screen and (max-width: 1279px) {
+  .profile__edit {
+    margin-top: 210px;
+  }
+  .profile {
+    margin-bottom: 95px;
+  }
+  .profile__title {
+    margin-bottom: 95px;
+    margin-top: 236px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .profile__title {
+    margin-bottom: 80px;
+    margin-top: 70px;
+  }
+  .profile__line {
+    width: calc(320px - 30px * 2);
+  }
+  .profile {
+    max-width: 320px;
+    position: relative;
+    height: calc(100vh - 74px);
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  .profile__edit {
+    position: absolute;
+    transform: translate(-50%, 0);
+    bottom: 71px;
+    margin: 0;
+    left: 50%;
+  }
+  .profile__logout {
+    position: absolute;
+    transform: translate(-50%, 0);
+    bottom: 40px;
+    left: 50%;
+  }
+  .profile__container {
+    width: calc(320px - 30px * 2);
+  }
 }

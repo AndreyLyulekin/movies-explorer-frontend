@@ -1,10 +1,15 @@
 .tech {
   background: #272727;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.tech__container {
   margin: 0;
   padding: 100px 70px;
-  align-items: center;
+  max-width: calc(1280px - 70px * 2);
   width: 100%;
-  max-width: calc(100vw - 70px * 2);
 }
 
 .tech__article {
@@ -66,20 +71,31 @@
 }
 
 .tech__header {
-  align-self: baseline;
+  color: #fff;
+  font-family: Inter;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  margin: 0 0 23px;
 }
 
 .tech__line {
   width: 100%;
+  border: none;
+  background: #dadada;
+  height: 1px;
+  margin: 0;
 }
 
-@media screen and (max-width: 768px) {
-  .tech {
-    max-width: calc(100vw - 50px * 2);
+@media screen and (max-width: 1279px) {
+  .tech__container {
+    max-width: calc(768px - 50px * 2);
     padding: 90px 50px;
   }
   .tech__article_title {
-    margin: 57px 0 22px;
+    margin: 80px 0 22px;
   }
   .tech__list {
     padding-top: 22px;
@@ -96,14 +112,17 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 767px) {
   .tech {
-    max-width: calc(100vw - 18px * 2);
+    background: none;
+  }
+  .tech__container {
+    max-width: calc(320px - 18px * 2);
     padding: 70px 18px;
     background: #202020;
   }
   .tech__article_title {
-    margin: 32px 0 24px;
+    margin: 60px 0 24px;
     font-size: 30px;
     line-height: normal;
     letter-spacing: -1.2px;
@@ -116,12 +135,21 @@
   .tech__lists {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 50px;
+    width: fit-content;
+    margin: 50px auto 0;
   }
   .tech__list {
     margin-top: 0;
   }
   .tech__line {
     background-color: #000;
+  }
+  .tech__header {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.72px;
+    margin-bottom: 27px;
   }
 }

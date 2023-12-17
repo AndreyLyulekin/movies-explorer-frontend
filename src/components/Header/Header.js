@@ -5,7 +5,9 @@ import { logo, HeaderLoggedOut, HeaderLoggedIn } from '../index.js';
 export default function Header({ isLoggedIn, setIsContextMenuOpened }) {
   return (
     <header className='header'>
-      <Link to='/'>
+      <Link
+        to='/'
+        className='util__link'>
         <img
           src={logo}
           alt='Logo'

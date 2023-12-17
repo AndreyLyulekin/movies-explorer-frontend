@@ -17,7 +17,7 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [isMoviesLoading, setIsMoviesLoading] = useState(false);
   const [isPageLoaded, setIsPageLoaded] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isContextMenuOpened, setIsContextMenuOpened] = useState(false);
   const [user, setUser] = useState({
     name: 'Виталий',
@@ -34,7 +34,7 @@ export default function App() {
     (async function () {
       try {
         setIsMoviesLoading(true);
-        for (let i = 1; i <= 9; i++) {
+        for (let i = 1; i <= 5; i++) {
           const response = await fetch(`https://api.nomoreparties.co/beatfilm-movies/${i}`);
           const movie = await response.json();
           setMovies((prev) => prev.concat(movie));

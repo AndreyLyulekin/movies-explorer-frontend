@@ -12,7 +12,7 @@ export default function NotFound() {
       <h1 className='notFound__title'>404</h1>
       <p className='notFound__description'>Страница не найдена</p>
       <button
-        className='notFound__goBack'
+        className='notFound__goBack util__link'
         onClick={goBack}>
         Назад
       </button>

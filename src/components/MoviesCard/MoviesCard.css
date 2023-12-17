@@ -1,25 +1,16 @@
 .card {
-  width: 360px;
+  max-width: 360px;
   position: relative;
   cursor: pointer;
   z-index: 1;
-}
-@media screen and (max-width: 768px) {
-  .card {
-    width: 339px;
-  }
+  max-height: 231px;
 }
 
 .card__image {
-  width: 339px;
+  width: 360px;
   height: 200px;
   object-fit: cover;
   border-radius: 3px;
-}
-@media screen and (max-width: 768px) {
-  .card__image {
-    width: 339px;
-  }
 }
 
 .card__title {
@@ -31,6 +22,9 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  margin-top: 10px;
+  margin-bottom: 0;
+  max-height: 16px;
 }
 .card__description {
   color: #8b8b8b;
@@ -46,7 +40,8 @@
 }
 .card__description-container {
   display: flex;
-  width: 100%;
+  width: calc(100% - 32px);
+  padding: 0 18px 0 14px;
   justify-content: space-between;
 }
 .card__save {
@@ -81,4 +76,68 @@
   cursor: pointer;
   border: none;
   background-color: transparent;
+}
+
+@media screen and (max-width: 1279px) {
+  .card {
+    width: 339px;
+  }
+  .card__image {
+    width: 339px;
+    height: 190px;
+  }
+  .card__title {
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 22px;
+  }
+  .card__description-container {
+    padding: 0;
+    width: 100%;
+  }
+  .card__description {
+    margin-top: 23px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .card {
+    width: 300px;
+  }
+  .card__image {
+    width: 300px;
+    height: 168px;
+  }
+  .card__title {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 13px;
+  }
+  .card__description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+    color: #8b8b8b;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 10px;
+    height: 12px;
+  }
+  .card__description-container {
+    height: 31px;
+  }
+  .card__save_done {
+    top: 10px;
+    right: 10px;
+  }
+  .card__save {
+    top: 10px;
+    right: 10px;
+  }
 }

@@ -4,8 +4,8 @@ export default function Main() {
   return (
     <main className='main'>
       <Promo />
-      {/* <AboutProject /> */}
-      {/* <Techs /> */}
+      <AboutProject />
+      <Techs />
       <AboutMe />
     </main>
   );

@@ -9,14 +9,14 @@ export default function HeaderLoggedIn({ setIsContextMenuOpened }) {
 
   return (
     <>
-      <nav className='header__nav'>
+      <nav className='header__nav_loggedIn'>
         <Link
-          className='header__link_loggedIn'
+          className='header__link_loggedIn util__link'
           to='/movies'>
           Фильмы
         </Link>
         <Link
-          className='header__link_loggedIn'
+          className='header__link_loggedIn util__link'
           to='/saved-movies'>
           Сохранённые фильмы
         </Link>
@@ -25,7 +25,7 @@ export default function HeaderLoggedIn({ setIsContextMenuOpened }) {
         <button className='header__profile'>Аккаунт</button>
       </Link>
       <button
-        className='header__burger'
+        className='header__burger util__button'
         onClick={burgerClick}>
         <img
           src={burger}

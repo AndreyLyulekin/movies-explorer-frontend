@@ -6,17 +6,11 @@
   padding: 0 70px;
   row-gap: 60px;
   column-gap: 30px;
-}
-@media screen and (max-width: 768px) {
-  .movies {
-    padding: 0 30px;
-    row-gap: 37px;
-    margin-top: 70px;
-  }
+  margin-top: 70px;
 }
 
 .movies__more {
-  margin: 50px auto 0;
+  margin: 15px auto 100px;
   color: #fff;
   text-align: center;
   font-family: Inter;
@@ -31,9 +25,32 @@
   background: #202020;
   cursor: pointer;
 }
-@media screen and (max-width: 768px) {
+.moveis__more_container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+@media screen and (max-width: 1279px) {
+  .movies {
+    padding: 0 30px;
+    row-gap: 47px;
+  }
   .movies__more {
-    margin-top: 13px;
+    margin-top: 50px;
     margin-bottom: 80px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .movies {
+    padding: 0 10px;
+    row-gap: 39px;
+    margin-top: 40px;
+    flex-direction: column;
+  }
+  .movies__more {
+    width: 240px;
+    margin-top: 3px;
+    margin-bottom: 99px;
   }
 }
