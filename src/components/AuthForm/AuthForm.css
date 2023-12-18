@@ -43,6 +43,7 @@
   font-weight: 500;
   line-height: normal;
   cursor: pointer;
+  border: none;
 }
 .auth__btn_register {
   margin-top: 69px;
