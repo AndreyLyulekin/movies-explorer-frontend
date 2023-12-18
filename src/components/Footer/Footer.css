@@ -12,7 +12,7 @@
 .footer__description {
   color: #8b8b8b;
   text-align: center;
-  font-family: Inter;
+  font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -23,7 +23,7 @@
 .footer__link {
   color: #fff;
   text-align: right;
-  font-family: Inter;
+  font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -44,7 +44,7 @@
 
 .footer__year {
   color: #fff;
-  font-family: Inter;
+  font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;

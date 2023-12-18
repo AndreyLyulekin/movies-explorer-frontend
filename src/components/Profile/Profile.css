@@ -8,7 +8,7 @@
 .profile__title {
   color: #fff;
   text-align: center;
-  font-family: Inter;
+  font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -26,7 +26,7 @@
 .profile__text {
   color: #fff;
   text-align: right;
-  font-family: Inter;
+  font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
@@ -35,7 +35,7 @@
 
 .profile__btn {
   text-align: center;
-  font-family: Inter;
+  font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 13px;
   font-style: normal;
   line-height: normal;
