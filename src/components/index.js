@@ -3,7 +3,6 @@ import HeaderLoggedOut from './HeaderLoggedOut/HeaderLoggedOut.js';
 import Promo from './Promo/Promo.js';
 import AboutProject from './AboutProject/AboutProject.js';
 import Techs from './Techs/Techs.js';
-import { technologies } from '../utils/consts';
 import Preloader from './Preloader/Preloader';
 import AboutMe from './AboutMe/AboutMe';
 import mePhoto from '../images/qZDBUFbEESc — копия.jpg';
@@ -25,6 +24,8 @@ import logo from '../images/logo.svg';
 import burger from '../images/burgerNotOpened.svg';
 import close from '../images/Group.svg';
 import ContextMenu from './ContextMenu/ContextMenu.js';
+import { technologies } from '../utils/consts';
+import { sitesPortfolio } from '../utils/consts';
 
 export {
   Header,
@@ -54,4 +55,5 @@ export {
   burger,
   close,
   ContextMenu,
+  sitesPortfolio,
 };

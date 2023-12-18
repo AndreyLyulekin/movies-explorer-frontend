@@ -22,11 +22,11 @@ export default function AboutProject() {
       <aside className='about__aside'>
         <figure className='about__figure'>
           <span className='about__figure-span about__figure-span_green'>1 неделя</span>
-          <figcaption className='about__figure__figcaption'>Back-end</figcaption>
+          <figcaption className='about__figure_figcaption'>Back-end</figcaption>
         </figure>
         <figure className='about__figure'>
           <span className='about__figure-span about__figure-span_grey'>4 недели</span>
-          <figcaption className='about__figure__figcaption'>Front-end</figcaption>
+          <figcaption className='about__figure_figcaption'>Front-end</figcaption>
         </figure>
       </aside>
     </section>

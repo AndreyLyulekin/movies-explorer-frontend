@@ -30,7 +30,7 @@ export default function MoviesCard({ card }) {
       <img
         className='card__image'
         src={`https://api.nomoreparties.co${card.image.url}`}
-        alt='...'
+        alt={`'Постер фильма '${card.nameRU}`}
       />
       <div className='card__description-container'>
         <h2 className='card__title'>{card.nameRU}</h2>

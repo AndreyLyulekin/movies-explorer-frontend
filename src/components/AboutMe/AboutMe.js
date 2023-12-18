@@ -1,28 +1,14 @@
 import React, { Fragment } from 'react';
-import { mePhoto } from '../index';
+import { mePhoto, sitesPortfolio } from '../index';
 
 export default function AboutMe() {
-  const sitesPortfolio = [
-    {
-      link: '#',
-      text: 'Статичный сайт',
-    },
-    {
-      link: '#',
-      text: 'Адаптивный сайт',
-    },
-    {
-      link: '#',
-      text: 'Одностраничное приложение',
-    },
-  ];
   return (
     <section
       className='aboutMe'
       id={'student'}>
       <h2 className='aboutMe__header'>Студент</h2>
       <hr className='aboutMe__header-line' />
-      <div className='aboutMe__container'>
+      <article className='aboutMe__container'>
         <div>
           <h3 className='aboutMe__title'>Андрей</h3>
           <h4 className='aboutMe__subtitle'>Фронтенд-разработчик, 30 лет</h4>
@@ -42,22 +28,26 @@ export default function AboutMe() {
           src={mePhoto}
           alt='mePhoto'
         />
-      </div>
+      </article>
       <div className='aboutMe__portfolio'>
         <h4 className='aboutMe__portfolio_title'>Портфолио</h4>
-        {sitesPortfolio.map((item, index) => {
-          return (
-            <React.Fragment key={index}>
-              <a
-                className='aboutMe__portfolio_link util__link'
-                href={item.link}>
-                <span className='aboutMe__portfolio_text'>{item.text}</span>
-                <span className='aboutMe__portfolio_arrow'>↗</span>
-              </a>
-              {index < sitesPortfolio.length - 1 ? <hr className='aboutMe__line' /> : ''}
-            </React.Fragment>
-          );
-        })}
+        <nav className='aboutMe__portfolio_nav'>
+          {sitesPortfolio.map((item, index) => {
+            return (
+              <React.Fragment key={index}>
+                <a
+                  target='_blank'
+                  className='aboutMe__portfolio_link util__link'
+                  href={item.link}
+                  rel='noreferrer'>
+                  <span className='aboutMe__portfolio_text'>{item.text}</span>
+                  <span className='aboutMe__portfolio_arrow'>↗</span>
+                </a>
+                {index < sitesPortfolio.length - 1 ? <hr className='aboutMe__line' /> : ''}
+              </React.Fragment>
+            );
+          })}
+        </nav>
       </div>
     </section>
   );
