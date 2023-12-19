@@ -1,0 +1,114 @@
+.contextMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  width: 520px;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #202020;
+  opacity: 0;
+  transition: opacity 1.3s linear;
+}
+
+.contextMenu__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 1.3s linear;
+}
+
+.contextMenu__nav {
+  margin: 160px 90px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.contextMenu__link {
+  color: #fff;
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration: none;
+  width: fit-content;
+  margin: auto;
+}
+
+.contextMenu__current {
+  position: relative;
+}
+
+.contextMenu__current::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+}
+
+.contextMenu__close {
+  position: absolute;
+  top: 22.4px;
+  right: 22.4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.contextMenuOpened {
+  opacity: 1;
+}
+
+.contextMenuClosed {
+  display: none;
+  opacity: 0;
+}
+
+.contextMenu__profile {
+  width: 100px;
+  height: 32px;
+  color: #fff;
+  background: #313131;
+  border: none;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  transform: translate(-50%, 0);
+  bottom: 90px;
+}
+
+@media screen and (max-width: 767px) {
+  .contextMenu {
+    width: 100%;
+    max-height: 100vh;
+  }
+  .contextMenu__close {
+    top: 13.44px;
+    right: 13.44px;
+  }
+  .contextMenu__nav {
+    margin-top: 144px;
+  }
+  .contextMenu__current::after {
+    bottom: -7px;
+  }
+  .contextMenu__profile {
+    bottom: 46px;
+  }
+}
