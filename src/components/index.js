@@ -26,6 +26,12 @@ import close from '../images/Group.svg';
 import ContextMenu from './ContextMenu/ContextMenu.js';
 import { technologies } from '../utils/consts';
 import { sitesPortfolio } from '../utils/consts';
+import ProtectedRoute from './ProtectedRoute/ProtectedRoute.js';
+import { authorize } from '../Api/Auth';
+import { register } from '../Api/Auth';
+import { checkTokenValidity } from '../Api/Auth';
+import UserContext from '../contexts/UserContext.js';
+import { userService } from '../Api/UserService.js';
 
 export {
   Header,
@@ -56,4 +62,10 @@ export {
   close,
   ContextMenu,
   sitesPortfolio,
+  ProtectedRoute,
+  authorize,
+  register,
+  checkTokenValidity,
+  UserContext,
+  userService,
 };

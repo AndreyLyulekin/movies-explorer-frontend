@@ -1,19 +1,26 @@
+import { useState } from 'react';
 import { SearchBtn, FilterCheckbox } from '../index';
 
 export default function SearchForm({ setFormData }) {
+  const [searchValue, setSearchValue] = useState('');
+  const [isShort, setIsShort] = useState(false);
+
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     const updatedValue = type === 'checkbox' ? checked : value;
 
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: updatedValue,
-    }));
+    if (name === 'query') {
+      setSearchValue(updatedValue);
+    } else if (name === 'isShort') {
+      setIsShort(updatedValue);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setFormData({ query: searchValue, isShort });
   };
+
   return (
     <section className='search'>
       <form
@@ -25,6 +32,7 @@ export default function SearchForm({ setFormData }) {
           id='searchInput'
           placeholder='Фильм'
           name='query'
+          value={searchValue}
           onChange={handleInputChange}
         />
         <button
@@ -39,7 +47,8 @@ export default function SearchForm({ setFormData }) {
       <span className='search__label_description'>
         <FilterCheckbox
           handleInputChange={handleInputChange}
-          name={'isShort'}
+          name='isShort'
+          checked={isShort}
         />
         Короткометражки
       </span>

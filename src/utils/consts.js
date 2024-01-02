@@ -20,3 +20,7 @@ export const sitesPortfolio = [
     text: 'Одностраничное приложение',
   },
 ];
+
+export const apiCredentials = {
+  baseUrl: 'http://localhost:3000',
+};

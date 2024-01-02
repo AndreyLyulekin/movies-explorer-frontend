@@ -6,7 +6,7 @@
   padding: 0 70px;
   row-gap: 60px;
   column-gap: 30px;
-  margin-top: 70px;
+  margin: 70px 0 auto;
 }
 
 .movies__more {
@@ -25,7 +25,7 @@
   background: #202020;
   cursor: pointer;
 }
-.moveis__more_container {
+.movies__more_container {
   display: flex;
   align-items: center;
   width: 100%;

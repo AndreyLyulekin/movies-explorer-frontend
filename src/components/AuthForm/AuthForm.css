@@ -34,7 +34,7 @@
   flex-shrink: 0;
   border-radius: 3px;
   background: #4285f4;
-  margin: 0 0 15px;
+  margin: 20px 0 15px;
   color: #fff;
   text-align: center;
   font-family: Inter, Arial, Helvetica, sans-serif;
@@ -45,11 +45,40 @@
   cursor: pointer;
   border: none;
 }
-.auth__btn_register {
-  margin-top: 69px;
+
+.auth__btn_inactive {
+  opacity: 0.8;
+  cursor: not-allowed;
 }
-.auth__btn_login {
-  margin-top: 179px;
+
+.auth__input_message {
+  color: #ee3465;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  height: 12px;
+  margin-top: 10px;
+}
+
+.auth__server_message {
+  text-align: center;
+  color: #ee3465;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  height: 10px;
+}
+
+.auth__server_message-login {
+  margin-top: 159px;
+}
+
+.auth__server_message-register {
+  margin-top: 49px;
 }
 
 @media screen and (max-width: 1279px) {
