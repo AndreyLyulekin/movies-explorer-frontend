@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { authorize, register, UserContext } from '../index.js';
+import { authorize, register, UserContext, validateEmail, validatePassword, validateName } from '../index.js';
 
 export default function AuthForm({ location, setIsLoggedIn, handleAuth, setIsPageLoaded }) {
   const navigate = useNavigate();
@@ -78,42 +78,9 @@ export default function AuthForm({ location, setIsLoggedIn, handleAuth, setIsPag
   }, [location]);
 
   useEffect(() => {
-    const nameValidationPattern = /^[a-zA-Zа-яА-ЯЁё\s-]+$/;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    //Валидация Email
-    if (formData.email?.length >= 1) {
-      emailPattern.test(formData.email)
-        ? setErrors((prev) => (delete prev.emailInputErrorPattern, { ...prev }))
-        : setErrors((prev) => ({
-            ...prev,
-            emailInputErrorPattern: 'Введите Email',
-          }));
-    }
-
-    //Валидация Password
-    formData.password?.length < 2 || formData.password?.length > 30
-      ? setErrors((prev) => ({
-          ...prev,
-          passwordInputErrorLength: 'Пароль должен содержать от 2 до 30 символов',
-        }))
-      : setErrors((prev) => (delete prev.passwordInputErrorLength, { ...prev }));
-
-    //Валидация Name
-    formData.name?.length < 2 || formData.name?.length > 30
-      ? setErrors((prev) => ({
-          ...prev,
-          nameInputErrorLength: 'Имя должно содержать от 2 до 30 символов',
-        }))
-      : setErrors((prev) => (delete prev.nameInputErrorLength, { ...prev }));
-    if (formData.name?.length >= 1) {
-      nameValidationPattern.test(formData.name)
-        ? setErrors((prev) => (delete prev.nameInputErrorPattern, { ...prev }))
-        : setErrors((prev) => ({
-            ...prev,
-            nameInputErrorPattern: 'Имя должно содержать только латиницу, кириллицу, пробел или дефис',
-          }));
-    }
+    validateEmail(formData, setErrors);
+    validatePassword(formData, setErrors);
+    validateName(formData, setErrors);
   }, [formData]);
 
   return (

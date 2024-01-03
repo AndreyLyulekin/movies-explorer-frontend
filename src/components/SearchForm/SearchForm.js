@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SearchBtn, FilterCheckbox } from '../index';
 
-export default function SearchForm({ setFormData }) {
+export default function SearchForm({ formData, setFormData }) {
   const [searchValue, setSearchValue] = useState('');
   const [isShort, setIsShort] = useState(false);
 
@@ -20,6 +20,11 @@ export default function SearchForm({ setFormData }) {
     e.preventDefault();
     setFormData({ query: searchValue, isShort });
   };
+
+  useEffect(() => {
+    setSearchValue(formData?.query);
+    setIsShort(formData?.isShort);
+  }, [formData]);
 
   return (
     <section className='search'>
@@ -47,7 +52,6 @@ export default function SearchForm({ setFormData }) {
       <span className='search__label_description'>
         <FilterCheckbox
           handleInputChange={handleInputChange}
-          name='isShort'
           checked={isShort}
         />
         Короткометражки

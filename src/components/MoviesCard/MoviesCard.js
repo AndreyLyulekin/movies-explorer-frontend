@@ -1,37 +1,44 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
-function convertMinToHrsAndMin(minutes) {
-  const hours = Math.floor(minutes / 60);
-  const remainingMinutes = minutes % 60;
-
-  return `${hours}ч ${remainingMinutes}м`;
-}
-
-function openTrailerLink(trailerLink) {
-  window.open(trailerLink, '_blank');
-}
+import { convertMinToHrsAndMin, openTrailerLink, cardService, ExistingCardsContext } from '../index';
 
 export default function MoviesCard({ card }) {
   const [isAdded, setIsAdded] = useState(false);
+  const { existingCards, setExistingCards } = useContext(ExistingCardsContext);
 
   const duration = convertMinToHrsAndMin(card.duration);
 
-  const toggleCard = (e) => {
+  const toggleCard = async (e) => {
     e.stopPropagation();
-    const existingCards = JSON.parse(localStorage.getItem('cards')) || [];
-    const index = existingCards.findIndex((c) => c.id === card.id);
 
-    index === -1 ? existingCards.push(card) : existingCards.splice(index, 1);
+    const index = existingCards.findIndex((c) => c.movieId === card.movieId);
+    const someСoincidence = existingCards.find((obj) => obj.movieId === card.movieId);
+    const _id = someСoincidence ? someСoincidence._id : null;
 
-    localStorage.setItem('cards', JSON.stringify(existingCards));
-    setIsAdded((prev) => !prev);
+    index === -1
+      ? cardService
+          .addFavoriteFilm(card)
+          .then((res) => {
+            setExistingCards((prev) => prev.concat(res));
+            setIsAdded(true);
+          })
+          .catch((err) => {
+            console.error(err);
+          })
+      : cardService
+          .deleteFavoriteFilm(_id)
+          .then(() => {
+            setExistingCards((prev) => prev.filter((obj) => obj.movieId !== card.movieId));
+            setIsAdded(false);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
   };
 
   useEffect(() => {
-    const existingCards = JSON.parse(localStorage.getItem('cards')) || [];
-    const currentCardId = card.id;
-    setIsAdded(existingCards.some((obj) => obj.id === currentCardId));
-  }, [card.id]);
+    setIsAdded(existingCards.some((cardObj) => cardObj.movieId === card.movieId));
+  }, [card.movieId, existingCards]);
 
   return (
     <article
@@ -39,7 +46,7 @@ export default function MoviesCard({ card }) {
       onClick={(e) => openTrailerLink(card.trailerLink)}>
       <img
         className='card__image'
-        src={`https://api.nomoreparties.co${card.image.url}`}
+        src={`${card.image}`}
         alt={`Постер фильма ${card.nameRU}`}
       />
       <div className='card__description-container'>

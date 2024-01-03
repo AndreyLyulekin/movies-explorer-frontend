@@ -41,7 +41,6 @@ export default function Profile({ setIsLoggedIn }) {
     userService
       .updateUserInfo(formData)
       .then((response) => {
-        console.log(response);
         setUser((prev) => ({
           ...prev,
           name: response.name,

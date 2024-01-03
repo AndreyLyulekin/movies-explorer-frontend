@@ -31,9 +31,22 @@ import { authorize } from '../Api/Auth';
 import { register } from '../Api/Auth';
 import { checkTokenValidity } from '../Api/Auth';
 import UserContext from '../contexts/UserContext.js';
+import ExistingCardsContext from '../contexts/ExistingCardsContext.js';
 import { userService } from '../Api/UserService.js';
+import { cardService } from '../Api/CardService.js';
+import { validateEmail } from '../utils/formValidators.js';
+import { validatePassword } from '../utils/formValidators.js';
+import { validateName } from '../utils/formValidators.js';
+import { convertMinToHrsAndMin, prepearingCard, openTrailerLink } from '../utils/helpers.js';
 
 export {
+  ExistingCardsContext,
+  prepearingCard,
+  convertMinToHrsAndMin,
+  openTrailerLink,
+  validateEmail,
+  validatePassword,
+  validateName,
   Header,
   HeaderLoggedOut,
   Promo,
@@ -68,4 +81,5 @@ export {
   checkTokenValidity,
   UserContext,
   userService,
+  cardService,
 };

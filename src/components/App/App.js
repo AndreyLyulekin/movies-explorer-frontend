@@ -15,6 +15,9 @@ import {
   ProtectedRoute,
   checkTokenValidity,
   UserContext,
+  prepearingCard,
+  cardService,
+  ExistingCardsContext,
 } from '../index.js';
 
 export default function App() {
@@ -23,6 +26,7 @@ export default function App() {
   const [isMoviesLoading, setIsMoviesLoading] = useState(false);
   const [isPageLoaded, setIsPageLoaded] = useState(false);
   const [isContextMenuOpened, setIsContextMenuOpened] = useState(false);
+  const [existingCards, setExistingCards] = useState([]);
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -61,6 +65,9 @@ export default function App() {
         setIsMoviesLoading(true);
         const response = await fetch(`https://api.nomoreparties.co/beatfilm-movies`);
         const movies = await response.json();
+        movies.forEach((movie) => {
+          prepearingCard(movie);
+        });
         setMovies(movies);
       } catch (error) {
         console.log(error);
@@ -68,114 +75,127 @@ export default function App() {
         setIsMoviesLoading(false);
       }
     })();
+
+    (async function () {
+      await cardService
+        .getAllFavoriteFilms()
+        .then((response) => {
+          setExistingCards(response);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    })();
   }, [isLoggedIn]);
 
   return (
     <>
       {!isPageLoaded ? (
         <div className='App'>
-          <UserContext.Provider value={{ user, setUser }}>
-            <ContextMenu
-              isContextMenuOpened={isContextMenuOpened}
-              setIsContextMenuOpened={setIsContextMenuOpened}
-            />
-            <Routes>
-              <Route
-                path='/sign-up'
-                element={
-                  <Auth
-                    setIsLoggedIn={setIsLoggedIn}
-                    handleAuth={handleAuth}
-                    setIsPageLoaded={setIsPageLoaded}
-                  />
-                }
+          <ExistingCardsContext.Provider value={{ existingCards, setExistingCards }}>
+            <UserContext.Provider value={{ user, setUser }}>
+              <ContextMenu
+                isContextMenuOpened={isContextMenuOpened}
+                setIsContextMenuOpened={setIsContextMenuOpened}
               />
-              <Route
-                path='/sign-in'
-                element={
-                  <Auth
-                    setIsLoggedIn={setIsLoggedIn}
-                    handleAuth={handleAuth}
-                    setIsPageLoaded={setIsPageLoaded}
-                  />
-                }
-              />
-              <Route
-                path='/'
-                element={
-                  <ProtectedRoute
-                    element={() => (
-                      <>
-                        <Header
-                          isLoggedIn={isLoggedIn}
-                          setIsContextMenuOpened={setIsContextMenuOpened}
-                        />
-                        <Main />
-                        <Footer />
-                      </>
-                    )}
-                  />
-                }
-              />
-              <Route
-                path='/movies'
-                element={
-                  <ProtectedRoute
-                    element={() => (
-                      <>
-                        <Header
-                          isLoggedIn={isLoggedIn}
-                          setIsContextMenuOpened={setIsContextMenuOpened}
-                        />
-                        <Movies
-                          movies={movies}
-                          isMoviesLoading={isMoviesLoading}
-                        />
-                        <Footer />
-                      </>
-                    )}
-                  />
-                }
-              />
-              <Route
-                path='/saved-movies'
-                element={
-                  <ProtectedRoute
-                    element={() => (
-                      <>
-                        <Header
-                          isLoggedIn={isLoggedIn}
-                          setIsContextMenuOpened={setIsContextMenuOpened}
-                        />
-                        <SavedMovies />
-                        <Footer />
-                      </>
-                    )}
-                  />
-                }
-              />
-              <Route
-                path='/profile'
-                element={
-                  <ProtectedRoute
-                    element={() => (
-                      <>
-                        <Header
-                          isLoggedIn={isLoggedIn}
-                          setIsContextMenuOpened={setIsContextMenuOpened}
-                        />
-                        <Profile setIsLoggedIn={setIsLoggedIn} />
-                      </>
-                    )}
-                  />
-                }
-              />
-              <Route
-                path='*'
-                element={<NotFound />}
-              />
-            </Routes>
-          </UserContext.Provider>
+              <Routes>
+                <Route
+                  path='/sign-up'
+                  element={
+                    <Auth
+                      setIsLoggedIn={setIsLoggedIn}
+                      handleAuth={handleAuth}
+                      setIsPageLoaded={setIsPageLoaded}
+                    />
+                  }
+                />
+                <Route
+                  path='/sign-in'
+                  element={
+                    <Auth
+                      setIsLoggedIn={setIsLoggedIn}
+                      handleAuth={handleAuth}
+                      setIsPageLoaded={setIsPageLoaded}
+                    />
+                  }
+                />
+                <Route
+                  path='/'
+                  element={
+                    <ProtectedRoute
+                      element={() => (
+                        <>
+                          <Header
+                            isLoggedIn={isLoggedIn}
+                            setIsContextMenuOpened={setIsContextMenuOpened}
+                          />
+                          <Main />
+                          <Footer />
+                        </>
+                      )}
+                    />
+                  }
+                />
+                <Route
+                  path='/movies'
+                  element={
+                    <ProtectedRoute
+                      element={() => (
+                        <>
+                          <Header
+                            isLoggedIn={isLoggedIn}
+                            setIsContextMenuOpened={setIsContextMenuOpened}
+                          />
+                          <Movies
+                            movies={movies}
+                            isMoviesLoading={isMoviesLoading}
+                          />
+                          <Footer />
+                        </>
+                      )}
+                    />
+                  }
+                />
+                <Route
+                  path='/saved-movies'
+                  element={
+                    <ProtectedRoute
+                      element={() => (
+                        <>
+                          <Header
+                            isLoggedIn={isLoggedIn}
+                            setIsContextMenuOpened={setIsContextMenuOpened}
+                          />
+                          <SavedMovies />
+                          <Footer />
+                        </>
+                      )}
+                    />
+                  }
+                />
+                <Route
+                  path='/profile'
+                  element={
+                    <ProtectedRoute
+                      element={() => (
+                        <>
+                          <Header
+                            isLoggedIn={isLoggedIn}
+                            setIsContextMenuOpened={setIsContextMenuOpened}
+                          />
+                          <Profile setIsLoggedIn={setIsLoggedIn} />
+                        </>
+                      )}
+                    />
+                  }
+                />
+                <Route
+                  path='*'
+                  element={<NotFound />}
+                />
+              </Routes>
+            </UserContext.Provider>
+          </ExistingCardsContext.Provider>
         </div>
       ) : (
         <Preloader first={true} />

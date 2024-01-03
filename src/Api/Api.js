@@ -20,7 +20,7 @@ export class Api {
     this._checkEndpoint(endpoint);
 
     return fetch(`${this._url}${endpoint}`, {
-      method: "GET",
+      method: 'GET',
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`,
       },
@@ -31,10 +31,10 @@ export class Api {
     this._checkEndpoint(endpoint);
 
     return fetch(`${this._url}${endpoint}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: body && JSON.stringify(body),
     }).then(this._handleResponse);
@@ -44,10 +44,10 @@ export class Api {
     this._checkEndpoint(endpoint);
 
     return fetch(`${this._url}${endpoint}`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: body && JSON.stringify(body),
     }).then(this._handleResponse);
@@ -57,17 +57,18 @@ export class Api {
     this._checkEndpoint(endpoint);
 
     return fetch(`${this._url}${endpoint}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     }).then(this._handleResponse);
   }
+
   delete(endpoint) {
     this._checkEndpoint(endpoint);
 
     return fetch(`${this._url}${endpoint}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`,
       },

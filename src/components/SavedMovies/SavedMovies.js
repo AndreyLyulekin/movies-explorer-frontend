@@ -1,22 +1,34 @@
-import { useState, useEffect } from 'react';
-import { SearchForm, MoviesCardList, Preloader } from '../index';
+import { useState, useContext, useEffect } from 'react';
+import { SearchForm, MoviesCardList, ExistingCardsContext } from '../index';
 
 export default function SavedMovies() {
-  const [formData, setFormData] = useState({
-    query: '',
-    isShort: false,
+  const [searchResults, setSearchResults] = useState([]);
+  const { existingCards } = useContext(ExistingCardsContext);
+  const [formData, setFormData] = useState(() => {
+    const storedFormData = localStorage.getItem('formDataSaved');
+    return storedFormData ? JSON.parse(storedFormData) : { query: '', isShort: false };
   });
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setMovies(JSON.parse(localStorage.getItem('cards')) || []);
-  }, []);
+    if (formData.query.length === 0) return;
 
+    const regex = new RegExp(formData.query, 'i');
+    const results = existingCards.filter((movie) => {
+      const matchesQuery = regex.test(movie.nameRU) && regex.test(movie.nameEN);
+      const matchesDuration = !formData.isShort || movie.duration <= 40;
+      return matchesQuery && matchesDuration;
+    });
+    setSearchResults(results);
+
+    localStorage.setItem('formDataSaved', JSON.stringify(formData));
+  }, [formData, existingCards]);
   return (
     <>
-      <SearchForm setFormData={setFormData} />
-      {isLoading ? <Preloader /> : <MoviesCardList movies={movies} />}
+      <SearchForm
+        formData={formData}
+        setFormData={setFormData}
+      />
+      <MoviesCardList movies={searchResults} />
     </>
   );
 }

@@ -3,15 +3,40 @@ import { useLocation } from 'react-router-dom';
 
 import { MoviesCard } from '../index';
 
+function getVisibleMoviesCount(windowWidth) {
+  if (windowWidth >= 1280) {
+    return 12;
+  } else if (windowWidth >= 768) {
+    return 8;
+  } else {
+    return 5;
+  }
+}
+
 function MoviesCardList({ movies }) {
   const location = useLocation();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [visibleMoviesCount, setVisibleMoviesCount] = useState(getVisibleMoviesCount(windowWidth));
+
+  const visibleMovies = movies.slice(0, visibleMoviesCount);
+
+  const handleLoadMore = () => {
+    let additionalCardsCount = 0;
+    if (windowWidth >= 1280) {
+      additionalCardsCount = 3;
+    } else if (windowWidth >= 768) {
+      additionalCardsCount = 2;
+    } else {
+      additionalCardsCount = 2;
+    }
+
+    setVisibleMoviesCount((prevCount) => prevCount + additionalCardsCount);
+  };
 
   useEffect(() => {
     const handleResize = () => {
-      setTimeout(() => {
-        setWindowWidth(window.innerWidth);
-      }, 1000);
+      setWindowWidth(window.innerWidth);
+      setVisibleMoviesCount(getVisibleMoviesCount(window.innerWidth));
     };
 
     window.addEventListener('resize', handleResize);
@@ -21,32 +46,22 @@ function MoviesCardList({ movies }) {
     };
   }, []);
 
-  useEffect(() => {
-    if (windowWidth < 768 && windowWidth > 320) {
-      console.log('Mobil');
-    } else if (windowWidth > 768 && windowWidth < 1280) {
-      console.log('Tablet');
-    } else {
-      console.log('Laptop');
-    }
-  }, [windowWidth]);
-
   return (
     <section className='movies'>
-      {movies.map((i) => {
-        return (
-          <MoviesCard
-            card={i}
-            key={i.id}
-          />
-        );
-      })}
-      {movies.length > 1 ? (
+      {visibleMovies.map((i) => (
+        <MoviesCard
+          card={i}
+          key={i.movieId}
+        />
+      ))}
+      {movies.length > visibleMoviesCount && location.pathname === '/movies' && (
         <div className='movies__more_container'>
-          {location.pathname === '/movies' ? <button className='movies__more util__button'>Ещё</button> : ''}
+          <button
+            className='movies__more util__button'
+            onClick={handleLoadMore}>
+            Ещё
+          </button>
         </div>
-      ) : (
-        ''
       )}
     </section>
   );
