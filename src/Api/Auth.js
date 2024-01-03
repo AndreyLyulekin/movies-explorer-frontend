@@ -1,9 +1,9 @@
-import { apiCredentials } from '../utils/consts';
+const baseUrl = 'http://ilovecats2.nomoredomainsmonster.ru/api';
 
 // Регистрации пользователя:
 
 export const register = (password, email, name) => {
-  return fetch(`${apiCredentials}/signup`, {
+  return fetch(`${baseUrl}/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export const register = (password, email, name) => {
 //Авторизация пользователя:
 
 export const authorize = (password, email) => {
-  return fetch(`${apiCredentials}/signin`, {
+  return fetch(`${baseUrl}/signin`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ export const authorize = (password, email) => {
 //Для проверки токена и получения email:
 
 export const checkTokenValidity = (token) => {
-  return fetch(`${apiCredentials}/users/me`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
