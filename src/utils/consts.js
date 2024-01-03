@@ -16,5 +16,5 @@ export const sitesPortfolio = [
 ];
 
 export const apiCredentials = {
-  baseUrl: 'http://ilovecats2.nomoredomainsmonster.ru/api',
+  baseUrl: 'https://ilovecats2.nomoredomainsmonster.ru/api',
 };

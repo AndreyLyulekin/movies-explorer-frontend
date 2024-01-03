@@ -1,4 +1,4 @@
-const baseUrl = 'http://ilovecats2.nomoredomainsmonster.ru/api';
+const baseUrl = 'https://ilovecats2.nomoredomainsmonster.ru/api';
 
 // Регистрации пользователя:
 
