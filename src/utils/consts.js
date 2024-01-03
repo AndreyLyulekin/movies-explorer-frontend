@@ -1,11 +1,5 @@
 export const technologies = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB'];
 
-export const devUser = {
-  name: 'Andrey',
-  email: 'Lyulekin@mail.ru',
-  password: 'Qwerty54321',
-};
-
 export const sitesPortfolio = [
   {
     link: 'https://andreylyulekin.github.io/how-to-learn/',
@@ -22,5 +16,5 @@ export const sitesPortfolio = [
 ];
 
 export const apiCredentials = {
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'http://ilovecats2.nomoredomainsmonster.ru/api',
 };

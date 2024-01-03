@@ -1,9 +1,9 @@
-const baseUrlAuth = 'http://localhost:3000';
+import { apiCredentials } from '../utils/consts';
 
 // Регистрации пользователя:
 
 export const register = (password, email, name) => {
-  return fetch(`${baseUrlAuth}/signup`, {
+  return fetch(`${apiCredentials}/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export const register = (password, email, name) => {
 //Авторизация пользователя:
 
 export const authorize = (password, email) => {
-  return fetch(`${baseUrlAuth}/signin`, {
+  return fetch(`${apiCredentials}/signin`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ export const authorize = (password, email) => {
 //Для проверки токена и получения email:
 
 export const checkTokenValidity = (token) => {
-  return fetch(`${baseUrlAuth}/users/me`, {
+  return fetch(`${apiCredentials}/users/me`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
