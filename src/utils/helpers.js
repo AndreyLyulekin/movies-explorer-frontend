@@ -19,3 +19,13 @@ export const prepearingCard = (card) => {
   delete newCard.updated_at;
   return newCard;
 };
+
+export function getVisibleMoviesCount(windowWidth) {
+  if (windowWidth >= 1280) {
+    return 12;
+  } else if (windowWidth >= 768) {
+    return 8;
+  } else {
+    return 5;
+  }
+}

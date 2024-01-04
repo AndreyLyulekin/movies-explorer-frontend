@@ -1,14 +1,16 @@
 import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
-import { UserContext, userService } from '../index.js';
+import { UserContext, userService, validateEmail, validateName, Popup } from '../index.js';
 
 export default function Profile({ setIsLoggedIn }) {
+  const [isResGood, setIsResGood] = useState(false);
   const navigate = useNavigate();
   const [isEditBegin, setIsEditBegin] = useState(false);
   const [formData, setFormData] = useState({});
   const { user, setUser } = useContext(UserContext);
   const [serverErrorText, setServerErrorText] = useState('');
+  const [errors, setErrors] = useState({});
 
   const handleInputEvent = (key, e) => {
     setFormData((prev) => ({
@@ -27,7 +29,7 @@ export default function Profile({ setIsLoggedIn }) {
       email: '',
     }));
     localStorage.removeItem('token');
-    navigate('/sign-in');
+    navigate('/');
   }
 
   function editProfile() {
@@ -35,17 +37,29 @@ export default function Profile({ setIsLoggedIn }) {
   }
 
   function updateUser(e) {
-    if (e.target?.className?.includes('profile__button_disabled')) {
+    e.preventDefault();
+
+    if (
+      e.target?.className?.includes('profile__button_disabled') ||
+      Object.keys(errors).length > 0 ||
+      !formData.email ||
+      !formData.name
+    ) {
+      setErrors((prev) => ({ ...prev, serverError: 'Поля пустые или заполнены некорректно' }));
       return;
     }
+
     userService
       .updateUserInfo(formData)
       .then((response) => {
-        setUser((prev) => ({
-          ...prev,
-          name: response.name,
-          email: response.email,
-        }));
+        setIsResGood((prev) => !prev);
+        setTimeout(() => {
+          setUser((prev) => ({
+            ...prev,
+            name: response.name,
+            email: response.email,
+          }));
+        }, 1000);
       })
       .catch((err) => {
         if (err === 'Error: 409') {
@@ -66,9 +80,21 @@ export default function Profile({ setIsLoggedIn }) {
     }));
   }, []);
 
+  useEffect(() => {
+    validateEmail(formData, setErrors);
+    validateName(formData, setErrors);
+  }, [formData]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsResGood(false);
+    }, 1000);
+  }, [isResGood]);
+
   return (
     <section className='profile'>
       <h1 className='profile__title'>Привет, {user.name}!</h1>
+      <span className='profile__error_input'>{errors.nameInputErrorLength || errors.nameInputErrorPattern}</span>
       <div className='profile__container'>
         <label
           htmlFor='name'
@@ -98,13 +124,14 @@ export default function Profile({ setIsLoggedIn }) {
           onChange={(e) => handleInputEvent('email', e.target.value)}
         />
       </div>
+      <span className='profile__error_input'>{errors.emailInputErrorPattern}</span>
       {isEditBegin ? (
         <>
           <span className='profile__error'>{serverErrorText}</span>
           <button
             className={`profile__btn_save util__button ${
               formData.name === user.name && formData.email === user.email ? 'profile__button_disabled' : ''
-            }`}
+            }  ${Object.entries(errors).length > 0 ? `profile__button_disabled` : ''}`}
             onClick={(e) => updateUser(e)}>
             Сохранить
           </button>
@@ -128,6 +155,7 @@ export default function Profile({ setIsLoggedIn }) {
           </button>
         </>
       )}
+      {isResGood && <Popup />}
     </section>
   );
 }

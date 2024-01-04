@@ -14,7 +14,7 @@
   font-weight: 500;
   line-height: normal;
   margin-top: 75px;
-  margin-bottom: 120px;
+  margin-bottom: 90px;
 }
 
 .profile__container {
@@ -110,6 +110,18 @@
   height: 14px;
 }
 
+.profile__error_input {
+  height: 14px;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 10px 0;
+  color: #ff004c;
+  text-align: center;
+  font-family: Inter;
+}
+
 .profile__edit {
   color: #fff;
   font-weight: 400;
@@ -128,6 +140,32 @@
   background-color: #424242;
   border: none;
   margin: 17px 0;
+}
+
+.profile__popup {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-18%);
+}
+.profile__popup_container {
+  width: 100%;
+  max-width: 410px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 400px;
+  background-color: #313131;
+  border-radius: 50px;
+}
+
+.profile__popup_text {
+  color: #00ff11;
+  font-weight: 500;
+  margin-top: 16px;
 }
 
 @media screen and (max-width: 1279px) {

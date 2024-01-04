@@ -13,8 +13,13 @@ export default function AuthForm({ location, setIsLoggedIn, handleAuth, setIsPag
 
   function handleRegisterClick(e) {
     e.preventDefault();
-    setIsPageLoaded(true);
 
+    if (Object.keys(errors).length > 0 || !formData.email || !formData.password || !formData.name) {
+      setErrors((prev) => ({ ...prev, serverError: 'Поля пустые или заполнены некорректно' }));
+      return;
+    }
+
+    setIsPageLoaded(true);
     register(formData.password, formData.email, formData.name)
       .then((response) => {
         if (response.status === 201) {
@@ -26,7 +31,7 @@ export default function AuthForm({ location, setIsLoggedIn, handleAuth, setIsPag
           }));
           handleLoginClick(e);
         } else {
-          setErrors((prev) => ({
+          setErrors(() => ({
             serverError: response.data.message,
           }));
         }
@@ -39,8 +44,13 @@ export default function AuthForm({ location, setIsLoggedIn, handleAuth, setIsPag
 
   function handleLoginClick(e) {
     e.preventDefault();
-    setIsPageLoaded(true);
 
+    if (Object.keys(errors).length > 0 || !formData.email || !formData.password) {
+      setErrors((prev) => ({ ...prev, serverError: 'Поля пустые или заполнены некорректно' }));
+      return;
+    }
+
+    setIsPageLoaded(true);
     authorize(formData.password, formData.email)
       .then((response) => {
         if (response.status === 200) {
@@ -50,7 +60,7 @@ export default function AuthForm({ location, setIsLoggedIn, handleAuth, setIsPag
             navigate('/');
           }, 500);
         } else {
-          setErrors((prev) => ({
+          setErrors(() => ({
             serverError: response.data.message,
           }));
         }

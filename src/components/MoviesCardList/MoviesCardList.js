@@ -1,17 +1,7 @@
 import { useState, useEffect, memo } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { MoviesCard } from '../index';
-
-function getVisibleMoviesCount(windowWidth) {
-  if (windowWidth >= 1280) {
-    return 12;
-  } else if (windowWidth >= 768) {
-    return 8;
-  } else {
-    return 5;
-  }
-}
+import { MoviesCard, getVisibleMoviesCount } from '../index';
 
 function MoviesCardList({ movies }) {
   const location = useLocation();
@@ -63,6 +53,7 @@ function MoviesCardList({ movies }) {
           </button>
         </div>
       )}
+      {movies.length === 0 && <span className='movies__nothingMatch'>Ничего не найдено</span>}
     </section>
   );
 }

@@ -1,10 +1,11 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 
 import { convertMinToHrsAndMin, openTrailerLink, cardService, ExistingCardsContext } from '../index';
 
 export default function MoviesCard({ card }) {
-  const [isAdded, setIsAdded] = useState(false);
   const { existingCards, setExistingCards } = useContext(ExistingCardsContext);
+
+  const isAdded = existingCards.some((cardObj) => cardObj.movieId === card.movieId);
 
   const duration = convertMinToHrsAndMin(card.duration);
 
@@ -20,7 +21,6 @@ export default function MoviesCard({ card }) {
           .addFavoriteFilm(card)
           .then((res) => {
             setExistingCards((prev) => prev.concat(res));
-            setIsAdded(true);
           })
           .catch((err) => {
             console.error(err);
@@ -29,16 +29,11 @@ export default function MoviesCard({ card }) {
           .deleteFavoriteFilm(_id)
           .then(() => {
             setExistingCards((prev) => prev.filter((obj) => obj.movieId !== card.movieId));
-            setIsAdded(false);
           })
           .catch((err) => {
             console.error(err);
           });
   };
-
-  useEffect(() => {
-    setIsAdded(existingCards.some((cardObj) => cardObj.movieId === card.movieId));
-  }, [card.movieId, existingCards]);
 
   return (
     <article

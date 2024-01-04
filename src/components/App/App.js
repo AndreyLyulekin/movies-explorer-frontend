@@ -122,8 +122,6 @@ export default function App() {
                 <Route
                   path='/'
                   element={
-                    <ProtectedRoute
-                      element={() => (
                         <>
                           <Header
                             isLoggedIn={isLoggedIn}
@@ -132,8 +130,6 @@ export default function App() {
                           <Main />
                           <Footer />
                         </>
-                      )}
-                    />
                   }
                 />
                 <Route

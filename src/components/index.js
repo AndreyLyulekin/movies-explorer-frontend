@@ -26,6 +26,7 @@ import close from '../images/Group.svg';
 import ContextMenu from './ContextMenu/ContextMenu.js';
 import { technologies } from '../utils/consts';
 import { sitesPortfolio } from '../utils/consts';
+import { getVisibleMoviesCount } from '../utils/helpers.js';
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute.js';
 import { authorize } from '../Api/Auth';
 import { register } from '../Api/Auth';
@@ -38,8 +39,11 @@ import { validateEmail } from '../utils/formValidators.js';
 import { validatePassword } from '../utils/formValidators.js';
 import { validateName } from '../utils/formValidators.js';
 import { convertMinToHrsAndMin, prepearingCard, openTrailerLink } from '../utils/helpers.js';
+import Popup from './Popup/Popup.js';
 
 export {
+  getVisibleMoviesCount,
+  Popup,
   ExistingCardsContext,
   prepearingCard,
   convertMinToHrsAndMin,

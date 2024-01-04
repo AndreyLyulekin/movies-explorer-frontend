@@ -32,6 +32,17 @@
   grid-column: 1 / -1;
 }
 
+.movies__nothingMatch {
+  color: #fff;
+  text-align: center;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  grid-column: 1 / -1;
+}
+
 @media screen and (max-width: 1279px) {
   .movies {
     max-width: calc(100% - 30px * 2);

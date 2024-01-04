@@ -14,7 +14,7 @@ export default function Movies({ movies, isMoviesLoading }) {
 
     const regex = new RegExp(formData.query, 'i');
     const results = movies.filter((movie) => {
-      const matchesQuery = regex.test(movie.nameRU) && regex.test(movie.nameEN);
+      const matchesQuery = regex.test(movie.nameRU) || regex.test(movie.nameEN);
       const matchesDuration = !formData.isShort || movie.duration <= 40;
       return matchesQuery && matchesDuration;
     });
