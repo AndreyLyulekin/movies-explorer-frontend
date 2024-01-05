@@ -3,9 +3,9 @@ import { useContext } from 'react';
 import { convertMinToHrsAndMin, openTrailerLink, ExistingCardsContext } from '../index';
 
 export default function MoviesCard({ card, toggleCard }) {
-  const { existingCards } = useContext(ExistingCardsContext);
+  const { favoriteFilms } = useContext(ExistingCardsContext);
 
-  const isAdded = existingCards.some((cardObj) => cardObj.movieId === card.movieId);
+  const isAdded = favoriteFilms.some((cardObj) => cardObj.movieId === card.movieId);
 
   const duration = convertMinToHrsAndMin(card.duration);
 

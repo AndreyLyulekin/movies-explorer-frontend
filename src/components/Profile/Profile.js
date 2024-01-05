@@ -20,7 +20,7 @@ export default function Profile({ setIsLoggedIn }) {
     }));
   };
 
-  function LogOut(e) {
+  function onSignOut(e) {
     e.preventDefault();
 
     setIsLoggedIn((prev) => !prev);
@@ -151,7 +151,7 @@ export default function Profile({ setIsLoggedIn }) {
             Редактировать
           </button>
           <button
-            onClick={(e) => LogOut(e)}
+            onClick={(e) => onSignOut(e)}
             className='profile__btn profile__logout util__button util__button'>
             Выйти из аккаунта
           </button>

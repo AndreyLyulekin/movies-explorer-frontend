@@ -24,23 +24,23 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [movies, setMovies] = useState([]);
   const [isMoviesLoading, setIsMoviesLoading] = useState(false);
-  const [isPageLoaded, setIsPageLoaded] = useState(false);
+  const [isPageLoading, setIsPageLoading] = useState(false);
   const [isContextMenuOpened, setIsContextMenuOpened] = useState(false);
-  const [existingCards, setExistingCards] = useState([]);
+  const [favoriteFilms, setFavoriteFilms] = useState([]);
   const [user, setUser] = useState({
     name: '',
     email: '',
   });
 
   const toggleCard = async (card) => {
-    const index = existingCards.findIndex((c) => c.movieId === card.movieId);
-    const someСoincidence = existingCards.find((obj) => obj.movieId === card.movieId);
+    const index = favoriteFilms.findIndex((c) => c.movieId === card.movieId);
+    const someСoincidence = favoriteFilms.find((obj) => obj.movieId === card.movieId);
     const _id = someСoincidence ? someСoincidence._id : null;
     index === -1
       ? cardService
           .addFavoriteFilm(card)
           .then((res) => {
-            setExistingCards((prev) => prev.concat(res));
+            setFavoriteFilms((prev) => prev.concat(res));
           })
           .catch((err) => {
             console.error(err);
@@ -48,7 +48,7 @@ export default function App() {
       : cardService
           .deleteFavoriteFilm(_id)
           .then(() => {
-            setExistingCards((prev) => prev.filter((obj) => obj.movieId !== card.movieId));
+            setFavoriteFilms((prev) => prev.filter((obj) => obj.movieId !== card.movieId));
           })
           .catch((err) => {
             console.error(err);
@@ -59,7 +59,7 @@ export default function App() {
     if (token) {
       checkTokenValidity(token)
         .then((response) => {
-          setIsPageLoaded(true);
+          setIsPageLoading(true);
           setIsLoggedIn(true);
           setUser({
             name: response.name,
@@ -70,7 +70,7 @@ export default function App() {
           console.error(error?.reason || error?.message);
         })
         .finally(() => {
-          setIsPageLoaded(false);
+          setIsPageLoading(false);
         });
     }
     return;
@@ -103,7 +103,7 @@ export default function App() {
       await cardService
         .getAllFavoriteFilms()
         .then((response) => {
-          setExistingCards(response);
+          setFavoriteFilms(response);
         })
         .catch((err) => {
           console.error(err);
@@ -113,9 +113,9 @@ export default function App() {
 
   return (
     <>
-      {!isPageLoaded ? (
+      {!isPageLoading ? (
         <div className='App'>
-          <ExistingCardsContext.Provider value={{ existingCards, setExistingCards }}>
+          <ExistingCardsContext.Provider value={{ favoriteFilms, setFavoriteFilms }}>
             <UserContext.Provider value={{ user, setUser }}>
               <ContextMenu
                 isContextMenuOpened={isContextMenuOpened}

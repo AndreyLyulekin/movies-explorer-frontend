@@ -8,7 +8,8 @@ function MoviesCardList({ movies, toggleCard }) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [visibleMoviesCount, setVisibleMoviesCount] = useState(getVisibleMoviesCount(windowWidth));
 
-  const visibleMovies = movies.slice(0, visibleMoviesCount);
+  let visibleMovies;
+  location.pathname === '/movies' ? (visibleMovies = movies.slice(0, visibleMoviesCount)) : (visibleMovies = movies);
 
   const handleLoadMore = () => {
     let additionalCardsCount = 0;
