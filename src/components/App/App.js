@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import {
   Header,
@@ -18,9 +19,12 @@ import {
   prepearingCard,
   cardService,
   ExistingCardsContext,
+  register,
+  authorize,
 } from '../index.js';
 
 export default function App() {
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [movies, setMovies] = useState([]);
   const [isMoviesLoading, setIsMoviesLoading] = useState(false);
@@ -31,6 +35,56 @@ export default function App() {
     name: '',
     email: '',
   });
+
+  function onSignup(e, setterLoader, formData, next, setterErrors) {
+    setterLoader(true);
+    register(formData.password, formData.email, formData.name)
+      .then((response) => {
+        if (response.status === 201) {
+          setIsLoggedIn(true);
+          setUser((prev) => ({
+            ...prev,
+            name: response.data.name,
+            email: response.data.email,
+          }));
+          next(e);
+        } else {
+          setterErrors(() => ({
+            serverError: response.data.message,
+          }));
+        }
+      })
+      .catch((error) => {
+        console.error(error?.response?.data?.error || error?.message);
+      })
+      .finally(() => {
+        setterLoader(false);
+      });
+  }
+
+  function onSignin(setterLoader, formData, setterErrors) {
+    setterLoader(true);
+    authorize(formData.password, formData.email)
+      .then((response) => {
+        if (response.status === 200) {
+          localStorage.setItem('token', response.data.token);
+          handleAuth(response.data.token);
+          setTimeout(() => {
+            navigate('/movies');
+          }, 500);
+        } else {
+          setterErrors(() => ({
+            serverError: response.data.message,
+          }));
+        }
+      })
+      .catch((error) => {
+        console.error(error?.response?.data?.error || error?.message);
+      })
+      .finally(() => {
+        setterLoader(false);
+      });
+  }
 
   const toggleCard = async (card) => {
     const index = favoriteFilms.findIndex((c) => c.movieId === card.movieId);
@@ -126,8 +180,9 @@ export default function App() {
                   path='/sign-up'
                   element={
                     <Auth
-                      setIsLoggedIn={setIsLoggedIn}
                       handleAuth={handleAuth}
+                      onSignup={onSignup}
+                      onSignin={onSignin}
                     />
                   }
                 />
@@ -135,8 +190,9 @@ export default function App() {
                   path='/sign-in'
                   element={
                     <Auth
-                      setIsLoggedIn={setIsLoggedIn}
                       handleAuth={handleAuth}
+                      onSignup={onSignup}
+                      onSignin={onSignin}
                     />
                   }
                 />

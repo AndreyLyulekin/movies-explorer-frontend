@@ -1,16 +1,11 @@
-import { useEffect, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-import { authorize, register, UserContext, validateEmail, validatePassword, validateName } from '../index.js';
+import { validateEmail, validatePassword, validateName } from '../index.js';
 
-export default function AuthForm({ location, setIsLoggedIn, handleAuth }) {
-  const navigate = useNavigate();
-
+export default function AuthForm({ location, handleAuth, onSignup, onSignin }) {
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
-  const { setUser } = useContext(UserContext);
 
   function handleRegisterClick(e) {
     e.preventDefault();
@@ -24,29 +19,7 @@ export default function AuthForm({ location, setIsLoggedIn, handleAuth }) {
       return;
     }
 
-    setIsLoading(true);
-    register(formData.password, formData.email, formData.name)
-      .then((response) => {
-        if (response.status === 201) {
-          setIsLoggedIn(true);
-          setUser((prev) => ({
-            ...prev,
-            name: response.data.name,
-            email: response.data.email,
-          }));
-          handleLoginClick(e);
-        } else {
-          setErrors(() => ({
-            serverError: response.data.message,
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error(error?.response?.data?.error || error?.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    onSignup(e, setIsLoading, formData, handleLoginClick, setErrors);
   }
 
   function handleLoginClick(e) {
@@ -60,28 +33,7 @@ export default function AuthForm({ location, setIsLoggedIn, handleAuth }) {
     if (isLoading) {
       return;
     }
-
-    setIsLoading(true);
-    authorize(formData.password, formData.email)
-      .then((response) => {
-        if (response.status === 200) {
-          localStorage.setItem('token', response.data.token);
-          handleAuth(response.data.token);
-          setTimeout(() => {
-            navigate('/movies');
-          }, 500);
-        } else {
-          setErrors(() => ({
-            serverError: response.data.message,
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error(error?.response?.data?.error || error?.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    onSignin(setIsLoading, formData, setErrors);
   }
 
   const handleInputEvent = (key, e) => {

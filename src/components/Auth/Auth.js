@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { logo, AuthForm } from '../index.js';
 
-export default function Auth({ setIsLoggedIn, handleAuth }) {
+export default function Auth({ handleAuth, onSignup, onSignin }) {
   const location = useLocation();
 
   const [formHelper, setFormHelper] = useState({});
@@ -42,8 +42,9 @@ export default function Auth({ setIsLoggedIn, handleAuth }) {
       <h1 className='auth__title'>{formHelper.currentPage === 'Регистрация' ? 'Рады видеть!' : 'Добро пожаловать!'}</h1>
       <AuthForm
         location={location.pathname}
-        setIsLoggedIn={setIsLoggedIn}
         handleAuth={handleAuth}
+        onSignup={onSignup}
+        onSignin={onSignin}
       />
       <p className='auth__link_description'>
         {formHelper.text}
