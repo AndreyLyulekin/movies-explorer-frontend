@@ -12,7 +12,7 @@ export default function SearchForm({ formData, setFormData }) {
     if (name === 'query') {
       setSearchValue(updatedValue);
     } else if (name === 'isShort') {
-      setIsShort(updatedValue);
+      setFormData({ query: searchValue, isShort: updatedValue });
     }
   };
 

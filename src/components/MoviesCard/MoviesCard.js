@@ -1,39 +1,18 @@
 import { useContext } from 'react';
 
-import { convertMinToHrsAndMin, openTrailerLink, cardService, ExistingCardsContext } from '../index';
+import { convertMinToHrsAndMin, openTrailerLink, ExistingCardsContext } from '../index';
 
-export default function MoviesCard({ card }) {
-  const { existingCards, setExistingCards } = useContext(ExistingCardsContext);
+export default function MoviesCard({ card, toggleCard }) {
+  const { existingCards } = useContext(ExistingCardsContext);
 
   const isAdded = existingCards.some((cardObj) => cardObj.movieId === card.movieId);
 
   const duration = convertMinToHrsAndMin(card.duration);
 
-  const toggleCard = async (e) => {
+  function handleLikeClick(e) {
     e.stopPropagation();
-
-    const index = existingCards.findIndex((c) => c.movieId === card.movieId);
-    const someСoincidence = existingCards.find((obj) => obj.movieId === card.movieId);
-    const _id = someСoincidence ? someСoincidence._id : null;
-
-    index === -1
-      ? cardService
-          .addFavoriteFilm(card)
-          .then((res) => {
-            setExistingCards((prev) => prev.concat(res));
-          })
-          .catch((err) => {
-            console.error(err);
-          })
-      : cardService
-          .deleteFavoriteFilm(_id)
-          .then(() => {
-            setExistingCards((prev) => prev.filter((obj) => obj.movieId !== card.movieId));
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-  };
+    toggleCard(card);
+  }
 
   return (
     <article
@@ -49,7 +28,8 @@ export default function MoviesCard({ card }) {
         <p className='card__description'>{duration}</p>
       </div>
       <button
-        onClick={(e) => toggleCard(e)}
+        type='button'
+        onClick={(e) => handleLikeClick(e)}
         className={isAdded ? 'card__save_done' : 'card__save'}></button>
     </article>
   );

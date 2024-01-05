@@ -32,6 +32,29 @@ export default function App() {
     email: '',
   });
 
+  const toggleCard = async (card) => {
+    const index = existingCards.findIndex((c) => c.movieId === card.movieId);
+    const someСoincidence = existingCards.find((obj) => obj.movieId === card.movieId);
+    const _id = someСoincidence ? someСoincidence._id : null;
+    index === -1
+      ? cardService
+          .addFavoriteFilm(card)
+          .then((res) => {
+            setExistingCards((prev) => prev.concat(res));
+          })
+          .catch((err) => {
+            console.error(err);
+          })
+      : cardService
+          .deleteFavoriteFilm(_id)
+          .then(() => {
+            setExistingCards((prev) => prev.filter((obj) => obj.movieId !== card.movieId));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+  };
+
   const handleAuth = (token) => {
     if (token) {
       checkTokenValidity(token)
@@ -105,7 +128,6 @@ export default function App() {
                     <Auth
                       setIsLoggedIn={setIsLoggedIn}
                       handleAuth={handleAuth}
-                      setIsPageLoaded={setIsPageLoaded}
                     />
                   }
                 />
@@ -115,21 +137,20 @@ export default function App() {
                     <Auth
                       setIsLoggedIn={setIsLoggedIn}
                       handleAuth={handleAuth}
-                      setIsPageLoaded={setIsPageLoaded}
                     />
                   }
                 />
                 <Route
                   path='/'
                   element={
-                        <>
-                          <Header
-                            isLoggedIn={isLoggedIn}
-                            setIsContextMenuOpened={setIsContextMenuOpened}
-                          />
-                          <Main />
-                          <Footer />
-                        </>
+                    <>
+                      <Header
+                        isLoggedIn={isLoggedIn}
+                        setIsContextMenuOpened={setIsContextMenuOpened}
+                      />
+                      <Main />
+                      <Footer />
+                    </>
                   }
                 />
                 <Route
@@ -145,6 +166,7 @@ export default function App() {
                           <Movies
                             movies={movies}
                             isMoviesLoading={isMoviesLoading}
+                            toggleCard={toggleCard}
                           />
                           <Footer />
                         </>
@@ -162,7 +184,7 @@ export default function App() {
                             isLoggedIn={isLoggedIn}
                             setIsContextMenuOpened={setIsContextMenuOpened}
                           />
-                          <SavedMovies />
+                          <SavedMovies toggleCard={toggleCard} />
                           <Footer />
                         </>
                       )}

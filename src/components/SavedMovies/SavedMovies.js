@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { SearchForm, MoviesCardList, ExistingCardsContext } from '../index';
 
-export default function SavedMovies() {
+export default function SavedMovies({ toggleCard }) {
   const [searchResults, setSearchResults] = useState([]);
   const { existingCards } = useContext(ExistingCardsContext);
   const [formData, setFormData] = useState({ query: '', isShort: false });
@@ -21,7 +21,10 @@ export default function SavedMovies() {
         formData={formData}
         setFormData={setFormData}
       />
-      <MoviesCardList movies={searchResults} />
+      <MoviesCardList
+        movies={searchResults}
+        toggleCard={toggleCard}
+      />
     </>
   );
 }

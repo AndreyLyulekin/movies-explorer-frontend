@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import { MoviesCard, getVisibleMoviesCount } from '../index';
 
-function MoviesCardList({ movies }) {
+function MoviesCardList({ movies, toggleCard }) {
   const location = useLocation();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [visibleMoviesCount, setVisibleMoviesCount] = useState(getVisibleMoviesCount(windowWidth));
@@ -42,6 +42,7 @@ function MoviesCardList({ movies }) {
         <MoviesCard
           card={i}
           key={i.movieId}
+          toggleCard={toggleCard}
         />
       ))}
       {movies.length > visibleMoviesCount && location.pathname === '/movies' && (

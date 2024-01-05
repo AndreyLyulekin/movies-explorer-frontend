@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { authorize, register, UserContext, validateEmail, validatePassword, validateName } from '../index.js';
 
-export default function AuthForm({ location, setIsLoggedIn, handleAuth, setIsPageLoaded }) {
+export default function AuthForm({ location, setIsLoggedIn, handleAuth }) {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const { setUser } = useContext(UserContext);
 
@@ -19,7 +20,11 @@ export default function AuthForm({ location, setIsLoggedIn, handleAuth, setIsPag
       return;
     }
 
-    setIsPageLoaded(true);
+    if (isLoading) {
+      return;
+    }
+
+    setIsLoading(true);
     register(formData.password, formData.email, formData.name)
       .then((response) => {
         if (response.status === 201) {
@@ -39,7 +44,9 @@ export default function AuthForm({ location, setIsLoggedIn, handleAuth, setIsPag
       .catch((error) => {
         console.error(error?.response?.data?.error || error?.message);
       })
-      .finally(setIsPageLoaded(false));
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   function handleLoginClick(e) {
@@ -50,14 +57,18 @@ export default function AuthForm({ location, setIsLoggedIn, handleAuth, setIsPag
       return;
     }
 
-    setIsPageLoaded(true);
+    if (isLoading) {
+      return;
+    }
+
+    setIsLoading(true);
     authorize(formData.password, formData.email)
       .then((response) => {
         if (response.status === 200) {
           localStorage.setItem('token', response.data.token);
           handleAuth(response.data.token);
           setTimeout(() => {
-            navigate('/');
+            navigate('/movies');
           }, 500);
         } else {
           setErrors(() => ({
@@ -68,7 +79,9 @@ export default function AuthForm({ location, setIsLoggedIn, handleAuth, setIsPag
       .catch((error) => {
         console.error(error?.response?.data?.error || error?.message);
       })
-      .finally(setIsPageLoaded(false));
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   const handleInputEvent = (key, e) => {

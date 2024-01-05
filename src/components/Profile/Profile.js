@@ -13,6 +13,7 @@ export default function Profile({ setIsLoggedIn }) {
   const [errors, setErrors] = useState({});
 
   const handleInputEvent = (key, e) => {
+    setErrors((prev) => (delete prev.serverError, { ...prev }));
     setFormData((prev) => ({
       ...prev,
       [key]: e,
@@ -29,6 +30,7 @@ export default function Profile({ setIsLoggedIn }) {
       email: '',
     }));
     localStorage.removeItem('token');
+    localStorage.removeItem('formData');
     navigate('/');
   }
 

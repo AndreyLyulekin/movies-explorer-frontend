@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { SearchForm, MoviesCardList, Preloader } from '../index';
 
-export default function Movies({ movies, isMoviesLoading }) {
+export default function Movies({ movies, isMoviesLoading, toggleCard }) {
   const [searchResults, setSearchResults] = useState([]);
   const [formData, setFormData] = useState(() => {
     const storedFormData = localStorage.getItem('formData');
@@ -29,7 +29,14 @@ export default function Movies({ movies, isMoviesLoading }) {
         formData={formData}
         setFormData={setFormData}
       />
-      {isMoviesLoading ? <Preloader /> : <MoviesCardList movies={searchResults} />}
+      {isMoviesLoading ? (
+        <Preloader />
+      ) : (
+        <MoviesCardList
+          movies={searchResults}
+          toggleCard={toggleCard}
+        />
+      )}
     </>
   );
 }
