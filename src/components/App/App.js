@@ -41,7 +41,6 @@ export default function App() {
     register(formData.password, formData.email, formData.name)
       .then((response) => {
         if (response.status === 201) {
-          setIsLoggedIn(true);
           setUser((prev) => ({
             ...prev,
             name: response.data.name,
@@ -130,6 +129,33 @@ export default function App() {
     return;
   };
 
+  async function getFilms() {
+    try {
+      setIsMoviesLoading(true);
+      const response = await fetch(`https://api.nomoreparties.co/beatfilm-movies`);
+      const movies = await response.json();
+      movies.forEach((movie) => {
+        prepearingCard(movie);
+      });
+      setMovies(movies);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsMoviesLoading(false);
+    }
+  }
+
+  async function getFavoriteFilms() {
+    await cardService
+      .getAllFavoriteFilms()
+      .then((response) => {
+        setFavoriteFilms(response);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
   useEffect(() => {
     handleAuth(localStorage.getItem('token'));
   }, []);
@@ -137,32 +163,8 @@ export default function App() {
   useEffect(() => {
     if (!isLoggedIn) return;
 
-    (async function () {
-      try {
-        setIsMoviesLoading(true);
-        const response = await fetch(`https://api.nomoreparties.co/beatfilm-movies`);
-        const movies = await response.json();
-        movies.forEach((movie) => {
-          prepearingCard(movie);
-        });
-        setMovies(movies);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsMoviesLoading(false);
-      }
-    })();
-
-    (async function () {
-      await cardService
-        .getAllFavoriteFilms()
-        .then((response) => {
-          setFavoriteFilms(response);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    })();
+    getFilms();
+    getFavoriteFilms();
   }, [isLoggedIn]);
 
   return (
@@ -183,6 +185,7 @@ export default function App() {
                       handleAuth={handleAuth}
                       onSignup={onSignup}
                       onSignin={onSignin}
+                      isLoggedIn={isLoggedIn}
                     />
                   }
                 />
@@ -193,6 +196,7 @@ export default function App() {
                       handleAuth={handleAuth}
                       onSignup={onSignup}
                       onSignin={onSignin}
+                      isLoggedIn={isLoggedIn}
                     />
                   }
                 />

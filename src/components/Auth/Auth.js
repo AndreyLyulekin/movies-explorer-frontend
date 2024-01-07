@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import { logo, AuthForm } from '../index.js';
 
-export default function Auth({ handleAuth, onSignup, onSignin }) {
+export default function Auth({ handleAuth, onSignup, onSignin, isLoggedIn }) {
+  const navigate = useNavigate();
+  if (isLoggedIn) navigate('/movies');
+
   const location = useLocation();
 
   const [formHelper, setFormHelper] = useState({});

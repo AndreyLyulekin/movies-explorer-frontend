@@ -11,6 +11,7 @@ export default function Profile({ setIsLoggedIn }) {
   const { user, setUser } = useContext(UserContext);
   const [serverErrorText, setServerErrorText] = useState('');
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputEvent = (key, e) => {
     setErrors((prev) => (delete prev.serverError, { ...prev }));
@@ -41,6 +42,7 @@ export default function Profile({ setIsLoggedIn }) {
   function updateUser(e) {
     e.preventDefault();
 
+    if (isLoading) return;
     if (
       e.target?.className?.includes('profile__button_disabled') ||
       Object.keys(errors).length > 0 ||
@@ -50,6 +52,7 @@ export default function Profile({ setIsLoggedIn }) {
       setErrors((prev) => ({ ...prev, serverError: 'Поля пустые или заполнены некорректно' }));
       return;
     }
+    setIsLoading(true);
 
     userService
       .updateUserInfo(formData)
@@ -71,6 +74,9 @@ export default function Profile({ setIsLoggedIn }) {
           setIsEditBegin(true);
           setServerErrorText('При обновлении профиля произошла ошибка.');
         }
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 

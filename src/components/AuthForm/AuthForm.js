@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { validateEmail, validatePassword, validateName } from '../index.js';
 
-export default function AuthForm({ location, handleAuth, onSignup, onSignin }) {
+export default function AuthForm({ location, onSignup, onSignin }) {
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);

@@ -15,6 +15,7 @@ export default function SavedMovies({ toggleCard }) {
     });
     setSearchResults(results);
   }, [formData, favoriteFilms]);
+
   return (
     <>
       <SearchForm
