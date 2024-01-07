@@ -1,6 +1,6 @@
 .tech {
   background: #272727;
-  width: 100vw;
+  width: calc(100%);
   display: flex;
   justify-content: center;
 }

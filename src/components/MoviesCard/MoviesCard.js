@@ -1,44 +1,36 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useContext } from 'react';
 
-export default function MoviesCard({ card }) {
-  const [isAdded, setIsAdded] = useState(false);
+import { convertMinToHrsAndMin, openTrailerLink, ExistingCardsContext } from '../index';
 
-  const convertMinToHrsAndMin = useCallback((minutes) => {
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = minutes % 60;
+export default function MoviesCard({ card, toggleCard }) {
+  const { favoriteFilms } = useContext(ExistingCardsContext);
 
-    return `${hours}ч ${remainingMinutes}м`;
-  }, []);
+  const isAdded = favoriteFilms.some((cardObj) => cardObj.movieId === card.movieId);
 
-  let duration = convertMinToHrsAndMin(card.duration);
+  const duration = convertMinToHrsAndMin(card.duration);
 
-  const handleClick = () => {
-    const existingCards = JSON.parse(localStorage.getItem('cards')) || [];
-    existingCards.push(card);
-    localStorage.setItem('cards', JSON.stringify(existingCards));
-    setIsAdded((prev) => !prev);
-  };
-
-  useEffect(() => {
-    const existingCards = JSON.parse(localStorage.getItem('cards')) || [];
-    const currentCardId = card.id;
-    setIsAdded(existingCards.some((obj) => obj.id === currentCardId));
-  }, [card.id, isAdded]);
+  function handleLikeClick(e) {
+    e.stopPropagation();
+    toggleCard(card);
+  }
 
   return (
-    <article className='card'>
+    <article
+      className='card'
+      onClick={(e) => openTrailerLink(card.trailerLink)}>
       <img
         className='card__image'
-        src={`https://api.nomoreparties.co${card.image.url}`}
-        alt={`'Постер фильма '${card.nameRU}`}
+        src={`${card.image}`}
+        alt={`Постер фильма ${card.nameRU}`}
       />
       <div className='card__description-container'>
         <h2 className='card__title'>{card.nameRU}</h2>
         <p className='card__description'>{duration}</p>
       </div>
       <button
-        onClick={handleClick}
-        className={`${isAdded ? 'card__save_done' : 'card__save'}`}></button>
+        type='button'
+        onClick={(e) => handleLikeClick(e)}
+        className={isAdded ? 'card__save_done' : 'card__save'}></button>
     </article>
   );
 }

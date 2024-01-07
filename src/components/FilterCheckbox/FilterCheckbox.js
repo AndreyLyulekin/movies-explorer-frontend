@@ -1,23 +1,14 @@
-import { useState } from 'react';
-
-export default function IosCheckBox({ handleInputChange, name }) {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleChange = (e) => {
-    setIsChecked(!isChecked);
-    handleInputChange(e);
-  };
-
+export default function IosCheckBox({ handleInputChange, checked }) {
   return (
     <label
-      className={`switch ${isChecked ? 'on' : 'off'}`}
+      className={`switch ${checked ? 'on' : 'off'}`}
       htmlFor='toggle'>
       <input
         type='checkbox'
         id='toggle'
-        checked={isChecked}
-        onChange={handleChange}
-        name={name}
+        checked={checked}
+        onChange={(e) => handleInputChange(e)}
+        name='isShort'
       />
       <span className='slider' />
     </label>
